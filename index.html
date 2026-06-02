@@ -156,11 +156,11 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
   <!-- STATS -->
   <div class="stat-row">
     <div class="cstat"><div class="cs-l">Ideas Found</div><div class="cs-v">3</div></div>
-    <div class="cstat"><div class="cs-l">Gauntlet Pass</div><div class="cs-v" style="color:#06b6d4">—</div></div>
+    <div class="cstat"><div class="cs-l">Gauntlet Pass</div><div class="cs-v" style="color:#06b6d4">0%</div></div>
     <div class="cstat"><div class="cs-l">Incubating</div><div class="cs-v" style="color:#3b82f6">0</div></div>
     <div class="cstat"><div class="cs-l">Promote Ready</div><div class="cs-v" style="color:#10b981">0</div></div>
     <div class="cstat"><div class="cs-l">Retired</div><div class="cs-v" style="color:#6b7280">0</div></div>
-    <div class="cstat"><div class="cs-l">In Queue</div><div class="cs-v">3</div></div>
+    <div class="cstat"><div class="cs-l">In Queue</div><div class="cs-v">0</div></div>
   </div>
 
   <!-- PIPELINE -->
@@ -208,52 +208,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
 
   <!-- IDEAS QUEUE -->
   <div class="section-h">&#9889; Ideas Pipeline &middot; discovered and scored by Scout</div>
-  <div style="margin-bottom:48px">
-        <div class="idea-card">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
-            <div>
-              <span class="idea-title">Jarvis HKFlow — HK Stocks Momentum with Stock Connect Signal</span>
-              <span class="idea-family">Alternative Data</span>
-            </div>
-            <div style="display:flex;gap:8px;align-items:center">
-              <div class="idea-score">8.3</div>
-              <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
-            </div>
-          </div>
-          <div class="idea-summary">This desk buys Hong Kong stocks that mainland Chinese investors are actively moving money into — using the daily Stock Connect flow data published by HKEX — combined with price momentum. It makes money because mainland institutional flows are a strong forward-looking signal of continued buying pressure in HK stocks.</div>
-          <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo OpenD API — HK large-cap stocks (Hang Seng components), long-only</div>
-          <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">10</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:100%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
-        </div>
-        <div class="idea-card">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
-            <div>
-              <span class="idea-title">Jarvis AltPairs — Crypto Cointegrated Pairs Mean-Reversion</span>
-              <span class="idea-family">Mean Reversion</span>
-            </div>
-            <div style="display:flex;gap:8px;align-items:center">
-              <div class="idea-score">8.1</div>
-              <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
-            </div>
-          </div>
-          <div class="idea-summary">This desk finds pairs of cryptocurrencies that historically move together (like ETH and BNB) and bets that when they temporarily diverge, they will snap back together. It makes money by buying the cheaper coin and shorting the expensive one when the gap gets too wide, then closing when they realign.</div>
-          <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: OKX REST API — altcoin perpetual futures (long/short pairs)</div>
-          <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
-        </div>
-        <div class="idea-card">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
-            <div>
-              <span class="idea-title">Jarvis Basis — Crypto Quarterly Futures Basis Carry</span>
-              <span class="idea-family">Carry / Yield</span>
-            </div>
-            <div style="display:flex;gap:8px;align-items:center">
-              <div class="idea-score">7.8</div>
-              <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
-            </div>
-          </div>
-          <div class="idea-summary">This desk earns predictable, locked-in income by simultaneously buying Bitcoin or Ethereum at spot price and selling it at a higher fixed price in the quarterly futures market. The price difference (basis) is the profit — like a short-term loan to the market that always gets repaid at expiry.</div>
-          <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: OKX REST API — quarterly futures (short) + spot or perp (long), delta-neutral pair</div>
-          <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div></div>
-        </div></div>
+  <div style="margin-bottom:48px"><div class="empty-state">No ideas in pipeline — next scan runs at 02:00 SGT.</div></div>
 
   <!-- FAMILY INTELLIGENCE -->
   <div class="section-h">&#127981; Family Intelligence &middot; discovery weight + live survival rate</div>
@@ -372,7 +327,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
     <span class="sep">&middot;</span>
     <a href="https://github.com/adamdegoat/jarvisscout">GitHub</a>
     <span class="sep">&middot;</span>
-    Last updated 2026-06-02 19:27 SGT
+    Last updated 2026-06-02 19:28 SGT
   </div>
 
 </div>
