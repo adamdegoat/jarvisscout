@@ -3,782 +3,316 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Jarvis Scout &middot; Trading Desk Research</title>
-<meta name="description" content="Jarvis Scout — an L5 self-improving research engine that discovers new trading desk concepts for the Jarvis fleet.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jarvis Scout &middot; Trading Desk Scout">
-<meta property="og:description" content="An L5 research engine that discovers new trading desk concepts for the Jarvis fleet and learns which strategy families produce the most buildable, durable edges.">
+<title>Jarvis Scout — Autonomous Strategy Factory</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#070b16;--ink:#e8eef7;--muted:#8a99b5;--dim:#5d6b86;--line:rgba(148,163,184,.13);--accent:#06b6d4;--glow:rgba(6,182,212,.22)}
-html,body{height:100%}
-body{
-  margin:0;background:#070b16;color:var(--ink);
-  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  -webkit-font-smoothing:antialiased;min-height:100vh;
-  background-image:
-    radial-gradient(1000px 560px at 16% -10%,rgba(6,182,212,.10),transparent 60%),
-    radial-gradient(900px 520px at 86% 2%,rgba(14,116,144,.11),transparent 62%),
-    radial-gradient(700px 600px at 50% 120%,rgba(6,182,212,.07),transparent 60%),
-    linear-gradient(rgba(148,163,184,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(148,163,184,.035) 1px,transparent 1px);
-  background-size:auto,auto,auto,46px 46px,46px 46px;
-  background-attachment:fixed;
-}
-a{color:inherit;text-decoration:none}
-.mono{font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+:root{--bg:#060d1a;--surface:#0d1829;--line:rgba(148,163,184,.1);--muted:#94a3b8;--dim:#4b5a72}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.6}
 
-/* ── sticky header ── */
-.header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(7,11,22,.82);
-  border-bottom:1px solid rgba(148,163,184,.10);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  padding:0 28px;
-}
-.header-inner{
-  max-width:1080px;margin:0 auto;height:56px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.wordmark{
-  font-family:'Space Grotesk','Inter',sans-serif;
-  font-size:26px;font-weight:700;color:#fff;letter-spacing:-.5px;
-}
+/* Header */
+.header{background:rgba(6,13,26,.92);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#fff;letter-spacing:-.3px}
 .wordmark-dot{color:#06b6d4}
-.header-right{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.header-right{font-size:12px;color:var(--dim);font-family:'IBM Plex Mono',monospace}
+.level-badge{background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);color:#06b6d4;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.08em}
 
-/* ── layout ── */
-.wrap{max-width:1080px;margin:0 auto;padding:64px 20px 72px}
+/* Layout */
+.wrap{max-width:1200px;margin:0 auto;padding:56px 32px 80px}
 
-/* ── hero ── */
-.hero{text-align:center;margin-bottom:0}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;color:#06b6d4;
-  background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);
-  border-radius:20px;padding:5px 14px;margin-bottom:22px;
-}
-.hero-title{
-  font-family:'Space Grotesk','Inter',sans-serif;
-  font-size:clamp(32px,5vw,52px);font-weight:700;
-  color:#fff;letter-spacing:-1.5px;line-height:1.08;margin-bottom:18px;
-}
+/* Hero */
+.hero{text-align:center;padding:72px 0 56px;max-width:780px;margin:0 auto}
+.hero-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#06b6d4;margin-bottom:16px}
+.hero-title{font-size:clamp(36px,5vw,56px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:20px}
 .hero-title span{color:#06b6d4}
-.hero-sub{
-  max-width:640px;margin:0 auto 36px;
-  color:var(--muted);font-size:15px;line-height:1.7;
-}
-.hero-sub b{color:#cdd8ec;font-weight:600}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.75;max-width:640px;margin:0 auto 28px}
+.hero-sub b{color:#e2e8f0}
 
-/* ── how-it-works steps ── */
-.howto{
-  display:flex;align-items:center;justify-content:center;
-  gap:10px;flex-wrap:nowrap;margin:0 auto 56px;max-width:900px;
-}
-.step{
-  display:flex;align-items:center;gap:11px;
-  background:rgba(148,163,184,.05);border:1px solid var(--line);
-  border-radius:12px;padding:12px 16px;
-}
-.step-n{
-  width:26px;height:26px;border-radius:50%;
-  background:linear-gradient(135deg,#06b6d4,#0891b2);
-  color:#07080f;font-weight:800;font-size:13px;
-  display:grid;place-items:center;flex:none;
-}
-.step-t{font-size:13px;color:var(--muted);line-height:1.3}
-.step-t b{color:#cdd8ec;font-weight:600}
-.step-arrow{color:var(--dim);font-size:16px}
+/* Section header */
+.section-h{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:52px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 
-/* ── section headers ── */
-.section-h{
-  font-size:11px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--muted);font-weight:700;margin-bottom:16px;
-  display:flex;align-items:center;gap:10px;
-}
-.section-h::after{
-  content:"";flex:1;height:1px;
-  background:linear-gradient(90deg,rgba(148,163,184,.15),transparent);
-}
-
-/* ── stat cards ── */
-.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:48px}
-.cstat{
-  background:linear-gradient(180deg,rgba(22,32,53,.6),rgba(15,23,42,.55));
-  border:1px solid var(--line);border-radius:14px;
-  padding:18px 20px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  box-shadow:0 8px 24px rgba(0,0,0,.28);
-}
+/* Stats row */
+.stat-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:48px}
+.cstat{background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid var(--line);border-radius:12px;padding:20px 18px;text-align:center}
 .cs-l{font-size:10px;letter-spacing:1.2px;color:var(--dim);text-transform:uppercase;font-weight:600;margin-bottom:6px}
-.cs-v{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:700;color:#fff;letter-spacing:-.5px}
+.cs-v{font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:700;color:#fff}
 
-/* ── glass panel ── */
-.glass{
-  background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));
-  border:1px solid var(--line);border-radius:16px;
-  padding:24px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  box-shadow:0 12px 36px rgba(0,0,0,.32);margin-bottom:48px;
-  overflow:hidden;
-}
+/* Pipeline */
+.pipeline-wrap{display:flex;align-items:flex-start;gap:0;margin-bottom:48px;overflow-x:auto;padding-bottom:8px}
+.stage-card{background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);border-radius:12px;padding:18px 16px;min-width:140px;flex:1}
+.stage-num{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:#06b6d4;letter-spacing:.1em;margin-bottom:6px}
+.stage-name{font-weight:700;font-size:13px;color:#fff;margin-bottom:8px}
+.stage-desc{font-size:11.5px;color:var(--muted);line-height:1.55}
+.stage-arrow{color:var(--dim);font-size:20px;padding:0 6px;margin-top:28px;flex-shrink:0}
 
-/* ── score methodology ── */
+/* Glass panel */
+.glass{background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid var(--line);border-radius:16px;padding:24px;backdrop-filter:blur(14px);box-shadow:0 12px 36px rgba(0,0,0,.32);margin-bottom:48px}
+
+/* Active desks */
+.desk-card{background:rgba(13,24,41,.7);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:14px;transition:border-color .2s}
+.desk-card:hover{border-color:rgba(148,163,184,.25)}
+.desk-name{font-weight:700;font-size:15px;color:#fff;margin-bottom:3px}
+.desk-meta{font-size:11px;color:var(--dim);font-family:'IBM Plex Mono',monospace}
+.desk-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.05em;white-space:nowrap}
+.desk-metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:14px}
+.dm{background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.1);border-radius:8px;padding:10px 12px;text-align:center}
+.dm-l{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+.dm-v{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#fff}
+
+/* Ideas */
+.idea-card{background:rgba(13,24,41,.7);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:14px}
+.idea-title{font-weight:700;font-size:15px;color:#fff;margin-right:8px}
+.idea-family{font-size:11px;color:var(--dim);font-family:'IBM Plex Mono',monospace;display:block;margin-top:3px}
+.idea-score{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:700;color:#06b6d4}
+.outcome-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px}
+.idea-summary{font-size:13px;color:var(--muted);line-height:1.65;margin-top:8px}
+.score-dims{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+.score-dim{background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);border-radius:8px;padding:10px 10px 8px}
+.sd-label{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.sd-val{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;color:#fff;margin-top:2px}
+
+/* Graveyard */
+.grave-card{background:rgba(13,24,41,.5);border:1px solid rgba(148,163,184,.07);border-radius:10px;padding:16px;margin-bottom:10px}
+.grave-name{font-weight:600;font-size:13px;color:#e2e8f0}
+.grave-meta{font-size:11px;color:var(--dim);font-family:'IBM Plex Mono',monospace;margin-top:3px}
+.grave-reason{font-size:12px;color:var(--muted);margin-top:6px}
+.grave-tags{font-size:10px;color:var(--dim);margin-top:5px;font-family:'IBM Plex Mono',monospace}
+
+/* Learning */
+.insight-row{font-size:13px;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--line);line-height:1.6}
+.insight-row:last-child{border-bottom:none}
+
+/* Family intelligence */
+.fam-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(148,163,184,.06)}
+.fam-row:last-child{border-bottom:none}
+.fam-label{min-width:190px;font-size:12.5px;color:#e2e8f0}
+.fam-bar-wrap{flex:1;background:rgba(148,163,184,.08);border-radius:3px;height:4px}
+.fam-bar{background:#06b6d4;height:4px;border-radius:3px;transition:width .4s}
+.fam-weight{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#06b6d4;min-width:42px;text-align:right}
+.fam-bias{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);min-width:36px;text-align:right}
+
+/* Scoring methodology */
 .method-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.method-item{
-  background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);
-  border-radius:10px;padding:14px 14px 12px;
-}
+.method-item{background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);border-radius:10px;padding:14px}
 .method-label{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#06b6d4;margin-bottom:6px}
 .method-desc{font-size:12px;color:var(--muted);line-height:1.55}
 
-/* ── footer ── */
-.foot{
-  text-align:center;padding-top:48px;
-  color:var(--dim);font-size:11.5px;line-height:1.9;
-  border-top:1px solid rgba(148,163,184,.07);margin-top:12px;
-}
+/* Empty state */
+.empty-state{text-align:center;color:var(--dim);font-size:13px;padding:32px;font-style:italic}
+
+/* Footer */
+.foot{text-align:center;padding-top:48px;color:var(--dim);font-size:11.5px;line-height:1.9;border-top:1px solid rgba(148,163,184,.07);margin-top:12px}
 .foot a{color:var(--muted);text-decoration:none}
 .foot a:hover{color:#06b6d4}
 .sep{color:#2a3550;margin:0 8px}
 
-@media(max-width:820px){
-  .stat-row{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px){
+  .stat-row{grid-template-columns:repeat(3,1fr)}
+  .desk-metrics{grid-template-columns:repeat(3,1fr)}
+  .score-dims{grid-template-columns:repeat(3,1fr)}
   .method-grid{grid-template-columns:repeat(2,1fr)}
-  .howto{flex-direction:column}
-  .step{width:100%}
-  .step-arrow{display:none}
-  .wrap{padding:48px 16px 56px}
+  .pipeline-wrap{flex-direction:column}
+  .stage-arrow{display:none}
 }
-@media(max-width:480px){
-  .stat-row{grid-template-columns:1fr 1fr}
-  .method-grid{grid-template-columns:1fr}
+@media(max-width:520px){
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+  .wrap{padding:40px 16px 60px}
 }
 </style>
 </head>
 <body>
 
-<!-- ── HEADER ── -->
 <header class="header">
   <div class="header-inner">
     <div class="wordmark">Jarvis Scout<span class="wordmark-dot">.</span></div>
-    <div class="header-right">
-      <span>&middot; Trading Desk Research</span>
+    <div class="header-right" style="display:flex;align-items:center;gap:16px">
+      <span class="level-badge">L9</span>
+      <span style="color:var(--dim)">&middot; Autonomous Strategy Factory</span>
     </div>
   </div>
 </header>
 
 <div class="wrap">
 
-  <!-- ── HERO ── -->
+  <!-- HERO -->
   <div class="hero">
-    <div class="hero-eyebrow">&#9889; L5 Self-Improving Research Engine</div>
-    <h1 class="hero-title">Trading Desk <span>Scout</span></h1>
-    <p class="hero-sub">An L5 research engine that discovers <b>new trading desk concepts</b> for the Jarvis fleet &mdash; then <b>learns which strategy families produce the most buildable, durable edges</b> to steer future research.</p>
+    <div class="hero-eyebrow">&#9889; L9 Self-Improving Intelligence</div>
+    <h1 class="hero-title">The <span>Strategy Factory</span></h1>
+    <p class="hero-sub">
+      Jarvis Scout discovers trading edges, stress-tests them through a 6-gate gauntlet,
+      deploys them as live paper simulations, and retires them the moment their edge decays —
+      then <b>learns what separates survivors from noise.</b>
+      Every cycle, the factory gets smarter about what it builds.
+    </p>
+    <div style="display:inline-flex;gap:24px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim)">
+      <span>&#128204; Singapore-only execution</span>
+      <span>&#128204; OKX + Futu/Moomoo</span>
+      <span>&#128204; Paper-first, always</span>
+    </div>
   </div>
 
-  <!-- ── HOW IT WORKS ── -->
-  <div class="howto">
-    <div class="step"><div class="step-n">1</div><div class="step-t"><b>Research market edges</b> across quant literature</div></div>
-    <div class="step-arrow">&rarr;</div>
-    <div class="step"><div class="step-n">2</div><div class="step-t"><b>Score &amp; rank</b> each idea across 5 dimensions</div></div>
-    <div class="step-arrow">&rarr;</div>
-    <div class="step"><div class="step-n">3</div><div class="step-t"><b>L5 layer learns</b> which families win</div></div>
-  </div>
-
-  <!-- ── STATS ── -->
+  <!-- STATS -->
   <div class="stat-row">
-    <div class="cstat">
-      <div class="cs-l">Total Ideas</div>
-      <div class="cs-v">6</div>
-    </div>
-    <div class="cstat">
-      <div class="cs-l">Researching</div>
-      <div class="cs-v" style="color:#f59e0b">0</div>
-    </div>
-    <div class="cstat">
-      <div class="cs-l">Building</div>
-      <div class="cs-v" style="color:#3b82f6">0</div>
-    </div>
-    <div class="cstat">
-      <div class="cs-l">Shipped</div>
-      <div class="cs-v" style="color:#10b981">0</div>
-    </div>
+    <div class="cstat"><div class="cs-l">Ideas Found</div><div class="cs-v">0</div></div>
+    <div class="cstat"><div class="cs-l">Gauntlet Pass</div><div class="cs-v" style="color:#06b6d4">—</div></div>
+    <div class="cstat"><div class="cs-l">Incubating</div><div class="cs-v" style="color:#3b82f6">0</div></div>
+    <div class="cstat"><div class="cs-l">Promote Ready</div><div class="cs-v" style="color:#10b981">0</div></div>
+    <div class="cstat"><div class="cs-l">Retired</div><div class="cs-v" style="color:#6b7280">0</div></div>
+    <div class="cstat"><div class="cs-l">In Queue</div><div class="cs-v">0</div></div>
   </div>
 
-  <!-- ── L5 FAMILY INTELLIGENCE ── -->
-  <div class="section-h">&#127981; L5 Family Intelligence &middot; how the research engine learns</div>
-  <div class="glass" style="padding:6px 0 2px">
-    
-<table style="width:100%;border-collapse:collapse">
-  <thead>
-    <tr style="border-bottom:1px solid rgba(148,163,184,.15)">
-      <th style="padding:9px 14px;text-align:left;font-size:10px;color:#5d6b86;text-transform:uppercase;letter-spacing:.1em;font-weight:700">Family</th>
-      <th style="padding:9px 14px;text-align:center;font-size:10px;color:#5d6b86;text-transform:uppercase;letter-spacing:.1em;font-weight:700">Ideas</th>
-      <th style="padding:9px 14px;text-align:center;font-size:10px;color:#5d6b86;text-transform:uppercase;letter-spacing:.1em;font-weight:700">Avg Score</th>
-      <th style="padding:9px 14px;text-align:center;font-size:10px;color:#f59e0b;text-transform:uppercase;letter-spacing:.1em;font-weight:700">Researching</th>
-      <th style="padding:9px 14px;text-align:center;font-size:10px;color:#3b82f6;text-transform:uppercase;letter-spacing:.1em;font-weight:700">Building</th>
-      <th style="padding:9px 14px;text-align:center;font-size:10px;color:#10b981;text-transform:uppercase;letter-spacing:.1em;font-weight:700">Shipped</th>
-      <th style="padding:9px 14px;text-align:left;font-size:10px;color:#06b6d4;text-transform:uppercase;letter-spacing:.1em;font-weight:700">L5 Weight</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Volatility Edge</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">2</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#10b981">8.1</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:45%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">1.15</span>
+  <!-- PIPELINE -->
+  <div class="section-h">&#9881; How It Works &middot; 7-stage autonomous pipeline</div>
+  <div class="pipeline-wrap">
+        <div class="stage-card">
+          <div class="stage-num">01</div>
+          <div class="stage-name">Discover</div>
+          <div class="stage-desc">Scout scans quant literature, market data and competitor gaps nightly to surface new edge hypotheses.</div>
+        </div><div class="stage-arrow">&#8594;</div>
+        <div class="stage-card">
+          <div class="stage-num">02</div>
+          <div class="stage-name">Gauntlet</div>
+          <div class="stage-desc">Every idea runs through 6 automated gates — score thresholds, proxy backtest, OOS holdout, multiple-testing penalty. Most ideas fail here. That's the point.</div>
+        </div><div class="stage-arrow">&#8594;</div>
+        <div class="stage-card">
+          <div class="stage-num">03</div>
+          <div class="stage-name">Generate</div>
+          <div class="stage-desc">Surviving ideas get a complete trading bot auto-generated by Claude, filled with real strategy logic into a standardised scaffold.</div>
+        </div><div class="stage-arrow">&#8594;</div>
+        <div class="stage-card">
+          <div class="stage-num">04</div>
+          <div class="stage-name">Review</div>
+          <div class="stage-desc">You review the generated code once. One approval per desk. Everything after is autonomous.</div>
+        </div><div class="stage-arrow">&#8594;</div>
+        <div class="stage-card">
+          <div class="stage-num">05</div>
+          <div class="stage-name">Incubate</div>
+          <div class="stage-desc">The approved desk runs as a paper simulation using real market prices — no broker API needed. Simulated trades, real fees deducted, honest P&L.</div>
+        </div><div class="stage-arrow">&#8594;</div>
+        <div class="stage-card">
+          <div class="stage-num">06</div>
+          <div class="stage-name">Monitor</div>
+          <div class="stage-desc">Daily decay detection tracks rolling win rate, Sharpe trend, and drawdown. Scout detects edge decay before it shows in P&L.</div>
+        </div><div class="stage-arrow">&#8594;</div>
+        <div class="stage-card">
+          <div class="stage-num">07</div>
+          <div class="stage-name">Retire → Learn</div>
+          <div class="stage-desc">Retired desks generate autopsies. The learning engine builds a survival model: which strategy families produce durable edges, in which regimes, and why.</div>
+        </div></div>
+
+  <!-- ACTIVE DESKS -->
+  <div class="section-h">&#128202; Active Paper Desks &middot; live simulations with real market data</div>
+  <div style="margin-bottom:48px"><div class="empty-state">No active paper desks yet — run a scan, pass the gauntlet, generate a desk.</div></div>
+
+  <!-- IDEAS QUEUE -->
+  <div class="section-h">&#9889; Ideas Pipeline &middot; discovered and scored by Scout</div>
+  <div style="margin-bottom:48px"><div class="empty-state">No ideas in pipeline — next scan runs at 02:00 SGT.</div></div>
+
+  <!-- FAMILY INTELLIGENCE -->
+  <div class="section-h">&#127981; Family Intelligence &middot; discovery weight + live survival rate</div>
+  <div class="glass" style="padding:6px 4px 2px">
+    <div style="display:flex;padding:8px 20px;gap:12px">
+      <div style="min-width:190px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim)">Family</div>
+      <div style="flex:1;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim)">Research Weight</div>
+      <div style="min-width:42px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);text-align:right">Disc.</div>
+      <div style="min-width:36px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);text-align:right">Surv.</div>
     </div>
-  </td>
-</tr>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Mean Reversion</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">1</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#f59e0b">7.9</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:45%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">1.14</span>
-    </div>
-  </td>
-</tr>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Carry / Yield</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">1</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#f59e0b">7.8</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:44%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">1.12</span>
-    </div>
-  </td>
-</tr>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Options / Derivatives</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">1</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#f59e0b">7.7</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:44%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">1.12</span>
-    </div>
-  </td>
-</tr>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Momentum / Trend</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">1</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#f59e0b">7.6</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:44%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">1.11</span>
-    </div>
-  </td>
-</tr>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Market Microstructure</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#8a99b5">0.0</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:20%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">0.50</span>
-    </div>
-  </td>
-</tr>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Cross-Asset Arb</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#8a99b5">0.0</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:20%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">0.50</span>
-    </div>
-  </td>
-</tr>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Regime Adaptive</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#8a99b5">0.0</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:20%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">0.50</span>
-    </div>
-  </td>
-</tr>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Alternative Data</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#8a99b5">0.0</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:20%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">0.50</span>
-    </div>
-  </td>
-</tr>
-<tr style="border-bottom:1px solid rgba(148,163,184,.07);transition:background .15s" onmouseover="this.style.background='rgba(6,182,212,.04)'" onmouseout="this.style.background='transparent'">
-  <td style="padding:11px 14px;color:#cdd8ec;font-size:13px;font-weight:500">Seasonal / Event</td>
-  <td style="padding:11px 14px;text-align:center;color:#8a99b5;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#8a99b5">0.0</td>
-  <td style="padding:11px 14px;text-align:center;color:#f59e0b;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#3b82f6;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 14px;text-align:center;color:#10b981;font-size:13px;font-family:'IBM Plex Mono',monospace">0</td>
-  <td style="padding:11px 16px;min-width:120px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="flex:1;background:rgba(148,163,184,.1);border-radius:3px;height:6px">
-        <div style="background:linear-gradient(90deg,#06b6d4,#06b6d4);height:6px;border-radius:3px;width:20%;box-shadow:0 0 6px rgba(6,182,212,.22)"></div>
-      </div>
-      <span style="font-size:11px;color:#06b6d4;font-weight:700;font-family:'IBM Plex Mono',monospace;min-width:28px">0.50</span>
-    </div>
-  </td>
-</tr></tbody>
-</table>
+    <div style="padding:0 8px">
+        <div class="fam-row">
+          <div class="fam-label">Momentum / Trend</div>
+          <div class="fam-bar-wrap">
+            <div class="fam-bar" style="width:44%"></div>
+          </div>
+          <div class="fam-weight">1.11x</div>
+          <div class="fam-bias" title="discovery bias">1.0x</div>
+        </div>
+        <div class="fam-row">
+          <div class="fam-label">Mean Reversion</div>
+          <div class="fam-bar-wrap">
+            <div class="fam-bar" style="width:45%"></div>
+          </div>
+          <div class="fam-weight">1.14x</div>
+          <div class="fam-bias" title="discovery bias">1.0x</div>
+        </div>
+        <div class="fam-row">
+          <div class="fam-label">Carry / Yield</div>
+          <div class="fam-bar-wrap">
+            <div class="fam-bar" style="width:44%"></div>
+          </div>
+          <div class="fam-weight">1.12x</div>
+          <div class="fam-bias" title="discovery bias">1.0x</div>
+        </div>
+        <div class="fam-row">
+          <div class="fam-label">Market Microstructure</div>
+          <div class="fam-bar-wrap">
+            <div class="fam-bar" style="width:20%"></div>
+          </div>
+          <div class="fam-weight">0.50x</div>
+          <div class="fam-bias" title="discovery bias">1.0x</div>
+        </div>
+        <div class="fam-row">
+          <div class="fam-label">Cross-Asset Arb</div>
+          <div class="fam-bar-wrap">
+            <div class="fam-bar" style="width:20%"></div>
+          </div>
+          <div class="fam-weight">0.50x</div>
+          <div class="fam-bias" title="discovery bias">1.0x</div>
+        </div>
+        <div class="fam-row">
+          <div class="fam-label">Regime Adaptive</div>
+          <div class="fam-bar-wrap">
+            <div class="fam-bar" style="width:20%"></div>
+          </div>
+          <div class="fam-weight">0.50x</div>
+          <div class="fam-bias" title="discovery bias">1.0x</div>
+        </div>
+        <div class="fam-row">
+          <div class="fam-label">Alternative Data</div>
+          <div class="fam-bar-wrap">
+            <div class="fam-bar" style="width:20%"></div>
+          </div>
+          <div class="fam-weight">0.50x</div>
+          <div class="fam-bias" title="discovery bias">1.0x</div>
+        </div>
+        <div class="fam-row">
+          <div class="fam-label">Seasonal / Event</div>
+          <div class="fam-bar-wrap">
+            <div class="fam-bar" style="width:20%"></div>
+          </div>
+          <div class="fam-weight">0.50x</div>
+          <div class="fam-bias" title="discovery bias">1.0x</div>
+        </div></div>
   </div>
 
-  <!-- ── IDEAS ── -->
-  <div class="section-h">&#9889; All Ideas &middot; ranked by score</div>
-  <div style="margin-bottom:48px">
-    
-<div style="background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid rgba(148,163,184,.13);border-radius:16px;padding:22px 24px;margin-bottom:14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(0,0,0,.32);position:relative;overflow:hidden">
-  <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#06b6d4;opacity:.8;border-radius:16px 0 0 16px"></div>
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px">
-    <div style="flex:1">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-        <span style="font-size:10px;font-family:'IBM Plex Mono',monospace;background:rgba(6,182,212,.10);color:#06b6d4;padding:2px 9px;border-radius:5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(6,182,212,.25)">Volatility Edge</span>
-        <span style="font-size:10px;font-weight:700;padding:2px 9px;border-radius:5px;background:#6b728022;color:#6b7280;border:1px solid #6b728044;letter-spacing:.04em">Pending</span>
-        <span style="font-size:10px;color:#5d6b86;font-family:'IBM Plex Mono',monospace">2026-06-02</span>
-      </div>
-      <div style="font-size:17px;font-weight:700;color:#e8eef7;line-height:1.35;margin-bottom:7px;letter-spacing:-.2px">Jarvis VIXSmile</div>
-      <div style="font-size:13.5px;color:#e8eef7;line-height:1.6;background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.2);border-radius:8px;padding:9px 12px;margin-bottom:8px"><span style="font-size:10px;font-weight:700;color:#06b6d4;text-transform:uppercase;letter-spacing:.08em;font-family:IBM Plex Mono,monospace">&#128161; In plain terms &nbsp;</span>The market's fear index almost always charges more for future protection than that protection ends up being worth. This desk runs an automated insurance business — collecting that overcharge as income — and watches the shape of the VIX curve to know exactly when to dial risk up or step back.</div>
-      <div style="font-size:13px;color:#8a99b5;line-height:1.65">Systematic trading of VIX futures curve shape, contango roll yield, and VVIX volatility-of-vol regimes to capture structural premium and forecast term-structure inflection points.</div>
-    </div>
-    <div style="text-align:center;flex-shrink:0;background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);border-radius:12px;padding:10px 14px;min-width:58px">
-      <div style="font-size:26px;font-weight:800;color:#ef4444;line-height:1;font-family:'IBM Plex Mono',monospace">8.12</div>
-      <div style="font-size:9px;color:#5d6b86;text-transform:uppercase;letter-spacing:.1em;margin-top:3px;font-weight:600">Score</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;padding:14px;background:rgba(148,163,184,.04);border-radius:10px;border:1px solid rgba(148,163,184,.08)">
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Edge Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Buildability</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">L5 Loop</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Fleet Novelty</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">10</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:100%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Risk Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">6</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:60%"></div></div>
-        </div></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12.5px">
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Instruments </span><span style="color:#cdd8ec">VIX futures (front 3 contracts), VVIX options (straddles and calendars), VIX ETP roll mechanics</span></div>
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Venue </span><span style="color:#cdd8ec">CBOE VIX futures + options (live + paper), real-time curve data from CBOE</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Edge Thesis </span><span style="color:#cdd8ec">VIX curve is in contango ~80% of the time, generating +0.5-2% monthly roll yield for short-vol positions. VIX9D (front-end) has incremental predictive power for realized vol. VVIX overprices vol-of-vol when VVIX > 2x VIX level, creating premium-selling edge. Curve shape transitions (steep ↔ flat contango) signal vol regime changes weeks ahead.</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Failure Modes </span><span style="color:#cdd8ec">Black swan tail risk (sudden vol spike catastrophe on short positions), structural regime break in curve shape (contango collapses permanently), curve inversion persistence during earnings/events</span></div>
-    <div style="grid-column:1/-1;background:rgba(6,182,212,.10);border-radius:8px;padding:8px 10px;border:1px solid rgba(6,182,212,.25)"><span style="color:#06b6d4;font-weight:700">L5 Loop </span><span style="color:#cdd8ec">Learn VIX curve slope forecasting and contango depth classification, roll yield P&L vs predicted curve shape, VVIX regime classification vs VIX option P&L (refine premium-selling rules), micro-movements in curve structure to detect inflection points before major vol events</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Build Estimate </span><span style="color:#cdd8ec">2-3 weeks: Phase 1 systematize curve shape metrics, Phase 2 add VVIX regime detection + option selling logic, Phase 3 integrate CBOE real-time feed</span></div>
-    <div style="grid-column:1/-1;padding-top:4px"><span style="font-size:10px;color:#374151;font-family:'IBM Plex Mono',monospace">ID: 20260602_volatility_003</span></div>
-  </div>
-  <div class="outcome-row" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><span style="font-size:10px;color:#5d6b86;align-self:center;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace">Status:</span>
-  <button onclick="setOutcome('20260602_volatility_003', 'pending')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #6b7280;background:#6b728022;color:#6b7280;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#6b7280';this.style.color='#6b7280'" onmouseout="if('pending'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Pending</button>
-  <button onclick="setOutcome('20260602_volatility_003', 'researching')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#f59e0b';this.style.color='#f59e0b'" onmouseout="if('researching'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Researching</button>
-  <button onclick="setOutcome('20260602_volatility_003', 'building')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#3b82f6';this.style.color='#3b82f6'" onmouseout="if('building'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Building</button>
-  <button onclick="setOutcome('20260602_volatility_003', 'shipped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#10b981';this.style.color='#10b981'" onmouseout="if('shipped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Shipped ✓</button>
-  <button onclick="setOutcome('20260602_volatility_003', 'dropped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#374151';this.style.color='#374151'" onmouseout="if('dropped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Dropped</button>
-</div>
-</div>
-<div style="background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid rgba(148,163,184,.13);border-radius:16px;padding:22px 24px;margin-bottom:14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(0,0,0,.32);position:relative;overflow:hidden">
-  <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#06b6d4;opacity:.8;border-radius:16px 0 0 16px"></div>
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px">
-    <div style="flex:1">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-        <span style="font-size:10px;font-family:'IBM Plex Mono',monospace;background:rgba(6,182,212,.10);color:#06b6d4;padding:2px 9px;border-radius:5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(6,182,212,.25)">Volatility Edge</span>
-        <span style="font-size:10px;font-weight:700;padding:2px 9px;border-radius:5px;background:#6b728022;color:#6b7280;border:1px solid #6b728044;letter-spacing:.04em">Pending</span>
-        <span style="font-size:10px;color:#5d6b86;font-family:'IBM Plex Mono',monospace">2026-06-02</span>
-      </div>
-      <div style="font-size:17px;font-weight:700;color:#e8eef7;line-height:1.35;margin-bottom:7px;letter-spacing:-.2px">Jarvis VolSmile</div>
-      <div style="font-size:13.5px;color:#e8eef7;line-height:1.6;background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.2);border-radius:8px;padding:9px 12px;margin-bottom:8px"><span style="font-size:10px;font-weight:700;color:#06b6d4;text-transform:uppercase;letter-spacing:.08em;font-family:IBM Plex Mono,monospace">&#128161; In plain terms &nbsp;</span>Options contracts on big US stocks regularly cost more than they're worth — the market overpays for protection against big price swings. This desk systematically sells that overpriced protection and pockets the difference, while carefully hedging so one surprise move doesn't wipe out the gains.</div>
-      <div style="font-size:13px;color:#8a99b5;line-height:1.65">Single-stock options gamma scalping and calendar spread arbitrage on liquid US equities, exploiting persistent implied vol overpricing via dynamic hedging and volatility smile mispricings.</div>
-    </div>
-    <div style="text-align:center;flex-shrink:0;background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);border-radius:12px;padding:10px 14px;min-width:58px">
-      <div style="font-size:26px;font-weight:800;color:#ef4444;line-height:1;font-family:'IBM Plex Mono',monospace">8.06</div>
-      <div style="font-size:9px;color:#5d6b86;text-transform:uppercase;letter-spacing:.1em;margin-top:3px;font-weight:600">Score</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;padding:14px;background:rgba(148,163,184,.04);border-radius:10px;border:1px solid rgba(148,163,184,.08)">
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Edge Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Buildability</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">L5 Loop</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Fleet Novelty</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">9</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:90%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Risk Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">7</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:70%"></div></div>
-        </div></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12.5px">
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Instruments </span><span style="color:#cdd8ec">US equity options (AAPL, MSFT, TSLA, NVDA, META, SPY, QQQ); ATM straddles and calendar spreads</span></div>
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Venue </span><span style="color:#cdd8ec">IBKR options, paper + live</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Edge Thesis </span><span style="color:#cdd8ec">Implied vol chronically overprices realized vol by 60-70% on sell-side (60-year empirical constant). Gamma scalping profit = (realized vol - implied vol) when dynamically rehedging. Single-stock options have wider spreads than indices, offering market-making edge. Volatility smile mispricings revert predictably.</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Failure Modes </span><span style="color:#cdd8ec">Vol regime change (sustained vol crush), liquidity dry-up on large directional moves, model risk from inaccurate Greeks estimation or skew misforecasting</span></div>
-    <div style="grid-column:1/-1;background:rgba(6,182,212,.10);border-radius:8px;padding:8px 10px;border:1px solid rgba(6,182,212,.25)"><span style="color:#06b6d4;font-weight:700">L5 Loop </span><span style="color:#cdd8ec">Learn from daily realized vol vs forward implied vol forecasts (refine vol prediction models), gamma P&L decomposition (optimize rehedge frequency), skew angle trends (predict term structure mean reversion), Greeks accuracy feedback</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Build Estimate </span><span style="color:#cdd8ec">2-3 weeks: Phase 1 backtest SPY/QQQ gamma scalping, Phase 2 migrate to single-stock options with IBKR live execution</span></div>
-    <div style="grid-column:1/-1;padding-top:4px"><span style="font-size:10px;color:#374151;font-family:'IBM Plex Mono',monospace">ID: 20260602_volatility_001</span></div>
-  </div>
-  <div class="outcome-row" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><span style="font-size:10px;color:#5d6b86;align-self:center;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace">Status:</span>
-  <button onclick="setOutcome('20260602_volatility_001', 'pending')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #6b7280;background:#6b728022;color:#6b7280;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#6b7280';this.style.color='#6b7280'" onmouseout="if('pending'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Pending</button>
-  <button onclick="setOutcome('20260602_volatility_001', 'researching')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#f59e0b';this.style.color='#f59e0b'" onmouseout="if('researching'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Researching</button>
-  <button onclick="setOutcome('20260602_volatility_001', 'building')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#3b82f6';this.style.color='#3b82f6'" onmouseout="if('building'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Building</button>
-  <button onclick="setOutcome('20260602_volatility_001', 'shipped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#10b981';this.style.color='#10b981'" onmouseout="if('shipped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Shipped ✓</button>
-  <button onclick="setOutcome('20260602_volatility_001', 'dropped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#374151';this.style.color='#374151'" onmouseout="if('dropped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Dropped</button>
-</div>
-</div>
-<div style="background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid rgba(148,163,184,.13);border-radius:16px;padding:22px 24px;margin-bottom:14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(0,0,0,.32);position:relative;overflow:hidden">
-  <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#06b6d4;opacity:.8;border-radius:16px 0 0 16px"></div>
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px">
-    <div style="flex:1">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-        <span style="font-size:10px;font-family:'IBM Plex Mono',monospace;background:rgba(6,182,212,.10);color:#06b6d4;padding:2px 9px;border-radius:5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(6,182,212,.25)">Mean Reversion</span>
-        <span style="font-size:10px;font-weight:700;padding:2px 9px;border-radius:5px;background:#6b728022;color:#6b7280;border:1px solid #6b728044;letter-spacing:.04em">Pending</span>
-        <span style="font-size:10px;color:#5d6b86;font-family:'IBM Plex Mono',monospace">2026-06-02</span>
-      </div>
-      <div style="font-size:17px;font-weight:700;color:#e8eef7;line-height:1.35;margin-bottom:7px;letter-spacing:-.2px">Jarvis StatArb</div>
-      <div style="font-size:13.5px;color:#e8eef7;line-height:1.6;background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.2);border-radius:8px;padding:9px 12px;margin-bottom:8px"><span style="font-size:10px;font-weight:700;color:#06b6d4;text-transform:uppercase;letter-spacing:.08em;font-family:IBM Plex Mono,monospace">&#128161; In plain terms &nbsp;</span>It finds pairs of Asian stocks that normally move in lockstep, then trades the gap when they temporarily drift apart — buying the cheaper one and selling the expensive one, betting they'll snap back into alignment. Small Asian stocks get less attention from big algorithms, so these gaps tend to be larger and more reliable.</div>
-      <div style="font-size:13px;color:#8a99b5;line-height:1.65">ML-driven pairs trading on HKEX and Singapore small-cap equities, using cointegration detection and LSTM-based spread mean-reversion forecasting to exploit correlation breakdowns.</div>
-    </div>
-    <div style="text-align:center;flex-shrink:0;background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);border-radius:12px;padding:10px 14px;min-width:58px">
-      <div style="font-size:26px;font-weight:800;color:#ef4444;line-height:1;font-family:'IBM Plex Mono',monospace">7.94</div>
-      <div style="font-size:9px;color:#5d6b86;text-transform:uppercase;letter-spacing:.1em;margin-top:3px;font-weight:600">Score</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;padding:14px;background:rgba(148,163,184,.04);border-radius:10px;border:1px solid rgba(148,163,184,.08)">
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Edge Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Buildability</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">7</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:70%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">L5 Loop</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">9</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:90%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Fleet Novelty</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">9</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:90%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Risk Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">6</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:60%"></div></div>
-        </div></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12.5px">
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Instruments </span><span style="color:#cdd8ec">HKEX small-caps and SGX-listed equities (focus: under-$5B market cap names with high turnover); up to 100 cointegrated pairs per market</span></div>
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Venue </span><span style="color:#cdd8ec">IBKR + moomoo paper, then live; HKEX + SGX access via local brokers</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Edge Thesis </span><span style="color:#cdd8ec">Asian small-caps have lower institutional coverage, seasonal supply/demand cycles, and minimal algo coverage vs US equities. Deep learning pairs trading (dynamic cointegration + LSTM ensemble) outperforms static correlation. Johansen cointegration test identifies mean-reverting pairs; LSTM learns spread forecasting and regime changes.</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Failure Modes </span><span style="color:#cdd8ec">Correlation decay / permanent regime breaks (pairs stop mean-reverting), illiquidity on exits during market stress, regulatory changes to Stock Connect affecting capital flows</span></div>
-    <div style="grid-column:1/-1;background:rgba(6,182,212,.10);border-radius:8px;padding:8px 10px;border:1px solid rgba(6,182,212,.25)"><span style="color:#06b6d4;font-weight:700">L5 Loop </span><span style="color:#cdd8ec">Learn from cointegration term-structure and half-lives (refine pair universe), actual spread P&L vs LSTM forecasts (improve reversion predictions), correlation regime changes (detect decoupling early), transaction cost per pair vs alpha (optimize rebalance frequency dynamically)</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Build Estimate </span><span style="color:#cdd8ec">3-4 weeks: Phase 1 cointegration screening, Phase 2 LSTM training on historical spreads, Phase 3 paper trading with live rebalancing logic</span></div>
-    <div style="grid-column:1/-1;padding-top:4px"><span style="font-size:10px;color:#374151;font-family:'IBM Plex Mono',monospace">ID: 20260602_meanreversion_002</span></div>
-  </div>
-  <div class="outcome-row" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><span style="font-size:10px;color:#5d6b86;align-self:center;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace">Status:</span>
-  <button onclick="setOutcome('20260602_meanreversion_002', 'pending')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #6b7280;background:#6b728022;color:#6b7280;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#6b7280';this.style.color='#6b7280'" onmouseout="if('pending'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Pending</button>
-  <button onclick="setOutcome('20260602_meanreversion_002', 'researching')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#f59e0b';this.style.color='#f59e0b'" onmouseout="if('researching'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Researching</button>
-  <button onclick="setOutcome('20260602_meanreversion_002', 'building')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#3b82f6';this.style.color='#3b82f6'" onmouseout="if('building'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Building</button>
-  <button onclick="setOutcome('20260602_meanreversion_002', 'shipped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#10b981';this.style.color='#10b981'" onmouseout="if('shipped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Shipped ✓</button>
-  <button onclick="setOutcome('20260602_meanreversion_002', 'dropped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#374151';this.style.color='#374151'" onmouseout="if('dropped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Dropped</button>
-</div>
-</div>
-<div style="background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid rgba(148,163,184,.13);border-radius:16px;padding:22px 24px;margin-bottom:14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(0,0,0,.32);position:relative;overflow:hidden">
-  <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#06b6d4;opacity:.8;border-radius:16px 0 0 16px"></div>
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px">
-    <div style="flex:1">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-        <span style="font-size:10px;font-family:'IBM Plex Mono',monospace;background:rgba(6,182,212,.10);color:#06b6d4;padding:2px 9px;border-radius:5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(6,182,212,.25)">Carry / Yield</span>
-        <span style="font-size:10px;font-weight:700;padding:2px 9px;border-radius:5px;background:#6b728022;color:#6b7280;border:1px solid #6b728044;letter-spacing:.04em">Pending</span>
-        <span style="font-size:10px;color:#5d6b86;font-family:'IBM Plex Mono',monospace">2026-06-02</span>
-      </div>
-      <div style="font-size:17px;font-weight:700;color:#e8eef7;line-height:1.35;margin-bottom:7px;letter-spacing:-.2px">Jarvis CommodityCarry</div>
-      <div style="font-size:13.5px;color:#e8eef7;line-height:1.6;background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.2);border-radius:8px;padding:9px 12px;margin-bottom:8px"><span style="font-size:10px;font-weight:700;color:#06b6d4;text-transform:uppercase;letter-spacing:.08em;font-family:IBM Plex Mono,monospace">&#128161; In plain terms &nbsp;</span>Gas, oil, and grain futures for future delivery are almost always priced higher than today's price to cover storage costs — that's a built-in premium this desk systematically captures by trading the price gap between near-term and far-term contracts. It's a structural market reality driven by physical storage economics, not sentiment, so it's harder to crowd out.</div>
-      <div style="font-size:13px;color:#8a99b5;line-height:1.65">Systematic calendar spread trading on energy and agricultural CME futures, harvesting structural roll yield from seasonal storage economics. Trades front/back spreads on natural gas (Jan/Jul), crude oil (front/+6mo), and corn (new-crop/old-crop) when the spread deviates beyond 1.5-sigma of its seasonally-adjusted historical range for that calendar date.</div>
-    </div>
-    <div style="text-align:center;flex-shrink:0;background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);border-radius:12px;padding:10px 14px;min-width:58px">
-      <div style="font-size:26px;font-weight:800;color:#ef4444;line-height:1;font-family:'IBM Plex Mono',monospace">7.78</div>
-      <div style="font-size:9px;color:#5d6b86;text-transform:uppercase;letter-spacing:.1em;margin-top:3px;font-weight:600">Score</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;padding:14px;background:rgba(148,163,184,.04);border-radius:10px;border:1px solid rgba(148,163,184,.08)">
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Edge Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Buildability</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">7</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:70%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">L5 Loop</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">7</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:70%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Fleet Novelty</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">9</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:90%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Risk Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12.5px">
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Instruments </span><span style="color:#cdd8ec">CME futures: Natural Gas (NG), WTI Crude (CL), Corn (ZC), Soybeans (ZS) — calendar spread pairs, not outright positions</span></div>
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Venue </span><span style="color:#cdd8ec">IBKR (CME futures, available via Interactive Brokers)</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Edge Thesis </span><span style="color:#cdd8ec">Commodity storage economics create predictable seasonal curves: natural gas must be stored from summer injection to winter draw, crude contango reflects tank lease cost, grains track crop-year supply cycles. These carry signals are structurally driven by physical market constraints — not crowded out by HFT — and exhibit consistent 6-month Sharpe > 0.8 on seasonally-adjusted spreads per Macrosynergy research.</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Failure Modes </span><span style="color:#cdd8ec">1) Structural regime break: OPEC supply shock or US LNG export surge permanently disrupts natural gas seasonal curve, collapsing carry signal. 2) Liquidity concentration: back-month futures have wide bid-ask in low-volume periods, causing slippage that erases thin carry yield on spread entry/exit.</span></div>
-    <div style="grid-column:1/-1;background:rgba(6,182,212,.10);border-radius:8px;padding:8px 10px;border:1px solid rgba(6,182,212,.25)"><span style="color:#06b6d4;font-weight:700">L5 Loop </span><span style="color:#cdd8ec">After each spread trade closes, record realized carry vs implied carry at entry, roll schedule adherence, and commodity-specific price shock timing. L5 learns: which commodity/spread structures have highest realized/implied carry ratio per macro regime (OPEC uncertainty, weather La Nina/El Nino index, crop-year phase); dynamically re-weights allocation toward highest-ratio spreads and recalibrates entry sigma-threshold per commodity quarterly.</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Build Estimate </span><span style="color:#cdd8ec">2-3 weeks: Phase 1 backtest spread signals on 10yr CME data via IB historical; Phase 2 paper trading with live IB calendar spread orders; Phase 3 live with 1-contract sizing</span></div>
-    <div style="grid-column:1/-1;padding-top:4px"><span style="font-size:10px;color:#374151;font-family:'IBM Plex Mono',monospace">ID: 20260602_carry_004</span></div>
-  </div>
-  <div class="outcome-row" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><span style="font-size:10px;color:#5d6b86;align-self:center;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace">Status:</span>
-  <button onclick="setOutcome('20260602_carry_004', 'pending')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #6b7280;background:#6b728022;color:#6b7280;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#6b7280';this.style.color='#6b7280'" onmouseout="if('pending'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Pending</button>
-  <button onclick="setOutcome('20260602_carry_004', 'researching')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#f59e0b';this.style.color='#f59e0b'" onmouseout="if('researching'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Researching</button>
-  <button onclick="setOutcome('20260602_carry_004', 'building')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#3b82f6';this.style.color='#3b82f6'" onmouseout="if('building'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Building</button>
-  <button onclick="setOutcome('20260602_carry_004', 'shipped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#10b981';this.style.color='#10b981'" onmouseout="if('shipped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Shipped ✓</button>
-  <button onclick="setOutcome('20260602_carry_004', 'dropped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#374151';this.style.color='#374151'" onmouseout="if('dropped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Dropped</button>
-</div>
-</div>
-<div style="background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid rgba(148,163,184,.13);border-radius:16px;padding:22px 24px;margin-bottom:14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(0,0,0,.32);position:relative;overflow:hidden">
-  <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#06b6d4;opacity:.8;border-radius:16px 0 0 16px"></div>
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px">
-    <div style="flex:1">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-        <span style="font-size:10px;font-family:'IBM Plex Mono',monospace;background:rgba(6,182,212,.10);color:#06b6d4;padding:2px 9px;border-radius:5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(6,182,212,.25)">Options / Derivatives</span>
-        <span style="font-size:10px;font-weight:700;padding:2px 9px;border-radius:5px;background:#6b728022;color:#6b7280;border:1px solid #6b728044;letter-spacing:.04em">Pending</span>
-        <span style="font-size:10px;color:#5d6b86;font-family:'IBM Plex Mono',monospace">2026-06-02</span>
-      </div>
-      <div style="font-size:17px;font-weight:700;color:#e8eef7;line-height:1.35;margin-bottom:7px;letter-spacing:-.2px">Jarvis EarningsVol</div>
-      <div style="font-size:13.5px;color:#e8eef7;line-height:1.6;background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.2);border-radius:8px;padding:9px 12px;margin-bottom:8px"><span style="font-size:10px;font-weight:700;color:#06b6d4;text-transform:uppercase;letter-spacing:.08em;font-family:IBM Plex Mono,monospace">&#128161; In plain terms &nbsp;</span>Before a company reports earnings, options on that stock get very expensive because nobody knows which way it'll go. Right after the announcement, those options crash in price regardless of the result. This desk sells those overpriced options just before earnings and buys them back cheaply right after — it doesn't matter if the stock goes up or down, only that the panic premium disappears.</div>
-      <div style="font-size:13px;color:#8a99b5;line-height:1.65">Systematic earnings IV crush harvesting on S&P 500 components: sell at-the-money straddles 3-5 trading days before earnings, delta-hedge daily with the underlying, and close the position the morning after announcement before the open. Focuses on stocks where historical post-earnings IV crush exceeds 30% and options bid-ask spread is tight enough to make the trade economical.</div>
-    </div>
-    <div style="text-align:center;flex-shrink:0;background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);border-radius:12px;padding:10px 14px;min-width:58px">
-      <div style="font-size:26px;font-weight:800;color:#ef4444;line-height:1;font-family:'IBM Plex Mono',monospace">7.72</div>
-      <div style="font-size:9px;color:#5d6b86;text-transform:uppercase;letter-spacing:.1em;margin-top:3px;font-weight:600">Score</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;padding:14px;background:rgba(148,163,184,.04);border-radius:10px;border:1px solid rgba(148,163,184,.08)">
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Edge Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Buildability</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">L5 Loop</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Fleet Novelty</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Risk Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">6</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:60%"></div></div>
-        </div></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12.5px">
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Instruments </span><span style="color:#cdd8ec">S&P 500 single-stock options on ~80 highest-IV names with earnings quarterly; ATM straddles; delta hedged with underlying shares via IBKR</span></div>
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Venue </span><span style="color:#cdd8ec">IBKR (equity options + underlying hedge)</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Edge Thesis </span><span style="color:#cdd8ec">Earnings events inflate single-stock IV by an average 40-80% in the week prior. Post-announcement, IV collapses regardless of price direction — academic studies (SSRN Pearce 2025, Amaya 2025) confirm structural return asymmetry: premium sellers win on ~68% of earnings events when entering 3-5 days prior. The edge is not directional — it exploits the market systematically overpaying for binary outcome insurance.</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Failure Modes </span><span style="color:#cdd8ec">1) Catastrophic earnings surprise: stock gaps 15-25% on blowout/disaster results, crushing the short straddle even after IV crush; position P&L = vega gain minus delta loss, and large gaps win for the buyer. 2) Edge erosion: as 0DTE and pre-earnings options trading grows, the IV premium compresses toward fair value, reducing crush magnitude over 2-3 years.</span></div>
-    <div style="grid-column:1/-1;background:rgba(6,182,212,.10);border-radius:8px;padding:8px 10px;border:1px solid rgba(6,182,212,.25)"><span style="color:#06b6d4;font-weight:700">L5 Loop </span><span style="color:#cdd8ec">Per-trade records: IV level at entry, realized crush magnitude, earnings surprise (beat/miss/in-line), sector, VIX regime at entry, delta P&L vs vega P&L decomposition. L5 learns: which sector/VIX-regime combinations have highest crush consistency; optimal entry days-before-earnings (3 vs 4 vs 5); whether ATM vs 0.25-delta strangle outperforms per regime; dynamically adjusts position size and stops based on IV percentile rank at entry.</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Build Estimate </span><span style="color:#cdd8ec">2-3 weeks: Phase 1 backtest 5yr earnings calendar vs options historical data (IBKR historical); Phase 2 paper trade 2 earnings cycles; Phase 3 live with 1-lot sizing and hard delta-hedge rules</span></div>
-    <div style="grid-column:1/-1;padding-top:4px"><span style="font-size:10px;color:#374151;font-family:'IBM Plex Mono',monospace">ID: 20260602_options_005</span></div>
-  </div>
-  <div class="outcome-row" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><span style="font-size:10px;color:#5d6b86;align-self:center;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace">Status:</span>
-  <button onclick="setOutcome('20260602_options_005', 'pending')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #6b7280;background:#6b728022;color:#6b7280;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#6b7280';this.style.color='#6b7280'" onmouseout="if('pending'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Pending</button>
-  <button onclick="setOutcome('20260602_options_005', 'researching')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#f59e0b';this.style.color='#f59e0b'" onmouseout="if('researching'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Researching</button>
-  <button onclick="setOutcome('20260602_options_005', 'building')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#3b82f6';this.style.color='#3b82f6'" onmouseout="if('building'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Building</button>
-  <button onclick="setOutcome('20260602_options_005', 'shipped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#10b981';this.style.color='#10b981'" onmouseout="if('shipped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Shipped ✓</button>
-  <button onclick="setOutcome('20260602_options_005', 'dropped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#374151';this.style.color='#374151'" onmouseout="if('dropped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Dropped</button>
-</div>
-</div>
-<div style="background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid rgba(148,163,184,.13);border-radius:16px;padding:22px 24px;margin-bottom:14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(0,0,0,.32);position:relative;overflow:hidden">
-  <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#06b6d4;opacity:.8;border-radius:16px 0 0 16px"></div>
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px">
-    <div style="flex:1">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-        <span style="font-size:10px;font-family:'IBM Plex Mono',monospace;background:rgba(6,182,212,.10);color:#06b6d4;padding:2px 9px;border-radius:5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(6,182,212,.25)">Momentum / Trend</span>
-        <span style="font-size:10px;font-weight:700;padding:2px 9px;border-radius:5px;background:#6b728022;color:#6b7280;border:1px solid #6b728044;letter-spacing:.04em">Pending</span>
-        <span style="font-size:10px;color:#5d6b86;font-family:'IBM Plex Mono',monospace">2026-06-02</span>
-      </div>
-      <div style="font-size:17px;font-weight:700;color:#e8eef7;line-height:1.35;margin-bottom:7px;letter-spacing:-.2px">Jarvis CTA</div>
-      <div style="font-size:13.5px;color:#e8eef7;line-height:1.6;background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.2);border-radius:8px;padding:9px 12px;margin-bottom:8px"><span style="font-size:10px;font-weight:700;color:#06b6d4;text-transform:uppercase;letter-spacing:.08em;font-family:IBM Plex Mono,monospace">&#128161; In plain terms &nbsp;</span>A trend-following machine that simultaneously bets on the direction of 20 different markets — stocks, bonds, oil, currencies — using medium to long-term momentum signals. When stock markets crash, this strategy often profits because it can go short too, and because it holds uncorrelated assets that move independently. It's the professional hedge fund approach, fully automated.</div>
-      <div style="font-size:13px;color:#8a99b5;line-height:1.65">Diversified multi-asset managed futures trend-following system trading 20+ liquid futures markets across 4 asset classes (equity index, government bond, commodity, FX) with volatility-scaled long/short positions. Uses an ensemble of 20/60/120-day momentum lookbacks, equal-risk-weighted across asset classes, and adapts lookback weights based on which trend period is working in the current macro regime.</div>
-    </div>
-    <div style="text-align:center;flex-shrink:0;background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);border-radius:12px;padding:10px 14px;min-width:58px">
-      <div style="font-size:26px;font-weight:800;color:#ef4444;line-height:1;font-family:'IBM Plex Mono',monospace">7.6</div>
-      <div style="font-size:9px;color:#5d6b86;text-transform:uppercase;letter-spacing:.1em;margin-top:3px;font-weight:600">Score</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;padding:14px;background:rgba(148,163,184,.04);border-radius:10px;border:1px solid rgba(148,163,184,.08)">
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Edge Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Buildability</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">7</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:70%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">L5 Loop</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Fleet Novelty</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">7</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:70%"></div></div>
-        </div>
-        <div style="flex:1;min-width:80px">
-          <div style="font-size:10px;color:#8a99b5;text-transform:uppercase;letter-spacing:.07em;font-weight:600">Risk Clarity</div>
-          <div style="font-size:18px;font-weight:800;color:#e8eef7;line-height:1.2;margin-top:3px">8</div>
-          <div style="background:rgba(148,163,184,.1);border-radius:3px;height:5px;width:100%;margin-top:5px"><div style="background:#06b6d4;height:5px;border-radius:3px;width:80%"></div></div>
-        </div></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12.5px">
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Instruments </span><span style="color:#cdd8ec">CME/CBOT/NYMEX/EUREX futures: ES/NQ (equity), ZN/ZB (bonds), CL/GC/SI/HG (commodities), 6E/6J/6B/6A (FX) — 20 markets total; all accessible via IBKR</span></div>
-    <div style="background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Venue </span><span style="color:#cdd8ec">IBKR (futures margin account; CME, CBOT, NYMEX, EUREX accessible)</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Edge Thesis </span><span style="color:#cdd8ec">Managed futures / CTA-style trend following has 40+ years of out-of-sample evidence (AQR, Man AHL, MSCI), Sharpe ~0.5-0.8 diversified, and crucially anti-correlates with equities during crisis periods (2008, 2020 Mar, 2022). The specific edge vs Jarvis Stocks and Jarvis Forex: cross-asset diversification across 4 uncorrelated return streams reduces max drawdown dramatically vs single-asset trend; long/short capability captures both bull and bear regime trends; bonds and commodities have no overlap with existing fleet.</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Failure Modes </span><span style="color:#cdd8ec">1) Trend-following whipsaw: choppy, range-bound macro environment (2011-2015 style) causes sustained drawdown as stop-outs on both sides erode capital; max historical DD ~20-25% for diversified CTA. 2) Correlation breakdown: in a true liquidity crisis, all asset class correlations spike to 1 simultaneously, collapsing the diversification assumption for a brief but painful period.</span></div>
-    <div style="grid-column:1/-1;background:rgba(6,182,212,.10);border-radius:8px;padding:8px 10px;border:1px solid rgba(6,182,212,.25)"><span style="color:#06b6d4;font-weight:700">L5 Loop </span><span style="color:#cdd8ec">Monthly rolling Sharpe of each lookback period (20/60/120d) per asset class stored as feedback. L5 learns: dynamic lookback weighting per asset class cluster (bonds trend slower than FX; commodities trend episodically); macro regime classification from yield curve slope + credit spreads to predict which lookback period is in-regime; position-level contribution analytics to detect when a specific market stops trending and should be down-weighted.</span></div>
-    <div style="grid-column:1/-1;background:rgba(148,163,184,.04);border-radius:8px;padding:8px 10px"><span style="color:#5d6b86;font-weight:600">Build Estimate </span><span style="color:#cdd8ec">3 weeks: Phase 1 backtest 10yr cross-asset momentum on IBKR historical futures; Phase 2 paper trade 1 month all 20 markets; Phase 3 live with minimum contract sizing (1 ES, 1 ZN etc.)</span></div>
-    <div style="grid-column:1/-1;padding-top:4px"><span style="font-size:10px;color:#374151;font-family:'IBM Plex Mono',monospace">ID: 20260602_momentum_006</span></div>
-  </div>
-  <div class="outcome-row" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><span style="font-size:10px;color:#5d6b86;align-self:center;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace">Status:</span>
-  <button onclick="setOutcome('20260602_momentum_006', 'pending')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #6b7280;background:#6b728022;color:#6b7280;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#6b7280';this.style.color='#6b7280'" onmouseout="if('pending'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Pending</button>
-  <button onclick="setOutcome('20260602_momentum_006', 'researching')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#f59e0b';this.style.color='#f59e0b'" onmouseout="if('researching'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Researching</button>
-  <button onclick="setOutcome('20260602_momentum_006', 'building')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#3b82f6';this.style.color='#3b82f6'" onmouseout="if('building'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Building</button>
-  <button onclick="setOutcome('20260602_momentum_006', 'shipped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#10b981';this.style.color='#10b981'" onmouseout="if('shipped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Shipped ✓</button>
-  <button onclick="setOutcome('20260602_momentum_006', 'dropped')" style="font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid #2a3550;background:transparent;color:#5d6b86;cursor:pointer;transition:all .15s;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em" onmouseover="this.style.borderColor='#374151';this.style.color='#374151'" onmouseout="if('dropped'!=='pending'){{this.style.borderColor='#2a3550';this.style.color='#5d6b86'}}">Dropped</button>
-</div>
-</div>
-  </div>
+  <!-- LEARNING ENGINE -->
+  <div class="section-h">&#129504; Learning Engine &middot; what the factory has learned so far</div>
+  <div class="glass"><div class="empty-state">Learning engine is building — needs 3+ retirements to surface patterns.</div></div>
 
-  <!-- ── SCORING METHODOLOGY ── -->
+  <!-- GRAVEYARD -->
+  <div class="section-h">&#128567; Retired Desks &middot; edges that ran their course</div>
+  <div style="margin-bottom:48px"><div class="empty-state">No desks retired yet — the graveyard is empty.</div></div>
+
+  <!-- SCORING METHODOLOGY -->
   <div class="section-h">&#128202; Scoring Methodology &middot; 5 dimensions, 0&ndash;10 each</div>
   <div class="glass">
     <div class="method-grid">
       <div class="method-item">
         <div class="method-label">Edge Clarity</div>
-        <div class="method-desc">Is there a clear, explainable, and likely-durable edge? Literature or empirical support?</div>
+        <div class="method-desc">Is there a clear, explainable, durable edge with literature or empirical support?</div>
       </div>
       <div class="method-item">
         <div class="method-label">Buildability</div>
-        <div class="method-desc">Executable with Python + publicly available data/execution in &lt;4 weeks solo?</div>
+        <div class="method-desc">Executable with Python + publicly available data from Singapore in &lt;4 weeks?</div>
       </div>
       <div class="method-item">
         <div class="method-label">L5 Loop Quality</div>
-        <div class="method-desc">How powerful is the self-improvement feedback signal? What specific data makes the system smarter?</div>
+        <div class="method-desc">How powerful is the self-improvement feedback signal? What specific data makes it smarter?</div>
       </div>
       <div class="method-item">
         <div class="method-label">Fleet Novelty</div>
-        <div class="method-desc">How genuinely different and complementary is this vs the existing 6 systems? 10 = zero overlap.</div>
+        <div class="method-desc">How genuinely different from the 6 existing systems? 10 = zero overlap.</div>
       </div>
       <div class="method-item">
         <div class="method-label">Risk Clarity</div>
@@ -787,35 +321,15 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 
-  <!-- ── FOOTER ── -->
+  <!-- FOOTER -->
   <div class="foot">
-    Jarvis Scout &middot; Trading Desk Research Engine
+    Jarvis Scout &middot; L9 Autonomous Strategy Factory
     <span class="sep">&middot;</span>
     <a href="https://github.com/adamdegoat/jarvisscout">GitHub</a>
     <span class="sep">&middot;</span>
-    Last updated 2026-06-02 13:46 SGT
+    Last updated 2026-06-02 18:55 SGT
   </div>
 
 </div>
-
-<script>
-function setOutcome(ideaId, outcome) {
-  const base = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? '' : 'http://localhost:8743';
-  if (base && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-    alert('Start the local Jarvis Scout server (serve.py) to update outcomes.');
-    return;
-  }
-  fetch(base + '/outcome', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({idea_id: ideaId, outcome: outcome})
-  })
-  .then(r => r.json())
-  .then(d => { if (d.ok) { location.reload(); } else { alert('Error: ' + (d.error || 'unknown')); } })
-  .catch(() => alert('Could not reach local server. Run: python3 ~/.jarvisscout/serve.py'));
-}
-</script>
-
 </body>
 </html>
