@@ -50,6 +50,23 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
 /* Glass panel */
 .glass{background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid var(--line);border-radius:16px;padding:24px;backdrop-filter:blur(14px);box-shadow:0 12px 36px rgba(0,0,0,.32);margin-bottom:48px}
 
+/* Action required / review cards */
+.action-section{margin-bottom:48px}
+.review-card{background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(13,24,41,.8));border:1px solid rgba(245,158,11,.35);border-radius:16px;padding:24px;margin-bottom:16px;position:relative}
+.review-alert{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.15em;color:#f59e0b;text-transform:uppercase;display:block;margin-bottom:8px}
+.review-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.review-name{font-weight:700;font-size:18px;color:#fff;margin-bottom:4px}
+.review-sub{font-size:11px;color:var(--dim);font-family:'IBM Plex Mono',monospace}
+.review-preflight{text-align:right;color:#10b981;font-weight:700;font-size:12px;white-space:nowrap}
+.review-summary{font-size:14px;color:#cdd8ec;line-height:1.7;margin:12px 0;padding:12px 16px;background:rgba(6,182,212,.06);border-left:3px solid #06b6d4;border-radius:4px}
+.review-params{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.rp{background:rgba(22,32,53,.6);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.rp-l{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+.rp-v{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#fff;word-break:break-all}
+.review-why{margin:14px 0;padding:12px 14px;background:rgba(22,32,53,.4);border-radius:8px;border:1px solid var(--line)}
+.review-approve{margin-top:16px;padding:14px 16px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:10px}
+.cmd{display:block;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#f59e0b;margin-top:6px;word-break:break-all}
+
 /* Active desks */
 .desk-card{background:rgba(13,24,41,.7);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:14px;transition:border-color .2s}
 .desk-card:hover{border-color:rgba(148,163,184,.25)}
@@ -156,12 +173,111 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
   <!-- STATS -->
   <div class="stat-row">
     <div class="cstat"><div class="cs-l">Ideas Found</div><div class="cs-v">3</div></div>
-    <div class="cstat"><div class="cs-l">Gauntlet Pass</div><div class="cs-v" style="color:#06b6d4">0%</div></div>
+    <div class="cstat"><div class="cs-l">Gauntlet Pass</div><div class="cs-v" style="color:#06b6d4">100%</div></div>
+    <div class="cstat"><div class="cs-l">Awaiting Review</div><div class="cs-v" style="color:#f59e0b">3</div></div>
     <div class="cstat"><div class="cs-l">Incubating</div><div class="cs-v" style="color:#3b82f6">0</div></div>
     <div class="cstat"><div class="cs-l">Promote Ready</div><div class="cs-v" style="color:#10b981">0</div></div>
     <div class="cstat"><div class="cs-l">Retired</div><div class="cs-v" style="color:#6b7280">0</div></div>
-    <div class="cstat"><div class="cs-l">In Queue</div><div class="cs-v">0</div></div>
   </div>
+
+  <!-- ACTION REQUIRED -->
+  <div class="section-h" style="color:#f59e0b;border-color:rgba(245,158,11,.2)">&#9888; Action Required &middot; 3 desk(s) awaiting your approval</div><div class="action-section">
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <span class="review-alert">&#9888; NEEDS YOUR APPROVAL</span>
+              <div class="review-name">Jarvis HKFlow — HK Stocks Momentum with Stock Connect Signal</div>
+              <div class="review-sub">Alternative Data &middot; Futu/Moomoo (stocks) &middot; generated 2026-06-02 19:54 SGT</div>
+            </div>
+            <div class="review-preflight">&#10003; Pre-flight passed<br><span style="font-size:10px;color:var(--dim)">code tested, runs clean</span></div>
+          </div>
+
+          <div class="review-summary">This desk buys Hong Kong stocks that mainland Chinese investors are actively moving money into — using the daily Stock Connect flow data published by HKEX — combined with price momentum. It makes money because mainland institutional flows are a strong forward-looking signal of continued buying pressure in HK stocks.</div>
+
+          <div class="review-params">
+            <div class="rp"><div class="rp-l">Trades</div><div class="rp-v">["0700.HK", "9988.HK", "3690.HK", "1211.HK", "1810.HK", "0883.HK", "1299.HK", "0388.HK"]</div></div>
+            <div class="rp"><div class="rp-l">Timeframe</div><div class="rp-v">1d</div></div>
+            <div class="rp"><div class="rp-l">Per position</div><div class="rp-v">0.15</div></div>
+            <div class="rp"><div class="rp-l">Paper capital</div><div class="rp-v">$10,000</div></div>
+          </div>
+
+          <div style="margin:10px 0 4px;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em">7-Gate Gauntlet Results</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0"><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Score thresholds</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Family active</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Execution viable</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Multiple-testing</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Proxy backtest</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ OOS holdout</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Adversarial red team</span></div>
+
+          <div class="review-why">
+            <div style="font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Edge thesis</div>
+            <div style="font-size:12.5px;color:var(--muted);line-height:1.6">Southbound Stock Connect flows have strong predictive power for 1-5 day HK stock returns (ScienceDirect 2025; NBER w30893). Mainland institutional investors have informational advantages about Chinese domestic demand and policy, making their flows a leading indicator. Combining f…</div>
+          </div>
+
+          <div class="review-approve">
+            <div style="font-size:11px;color:var(--dim);margin-bottom:6px">To start paper trading — run this command on your Mac:</div>
+            <code class="cmd">python3 ~/.jarvisscout/generator.py --approve 20260602_altd_003</code>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <span class="review-alert">&#9888; NEEDS YOUR APPROVAL</span>
+              <div class="review-name">Jarvis Basis — Crypto Quarterly Futures Basis Carry</div>
+              <div class="review-sub">Carry / Yield &middot; OKX (crypto) &middot; generated 2026-06-02 20:01 SGT</div>
+            </div>
+            <div class="review-preflight">&#10003; Pre-flight passed<br><span style="font-size:10px;color:var(--dim)">code tested, runs clean</span></div>
+          </div>
+
+          <div class="review-summary">This desk earns predictable, locked-in income by simultaneously buying Bitcoin or Ethereum at spot price and selling it at a higher fixed price in the quarterly futures market. The price difference (basis) is the profit — like a short-term loan to the market that always gets repaid at expiry.</div>
+
+          <div class="review-params">
+            <div class="rp"><div class="rp-l">Trades</div><div class="rp-v">["BTC-USDT", "ETH-USDT", "SOL-USDT"]</div></div>
+            <div class="rp"><div class="rp-l">Timeframe</div><div class="rp-v">1d</div></div>
+            <div class="rp"><div class="rp-l">Per position</div><div class="rp-v">0.30</div></div>
+            <div class="rp"><div class="rp-l">Paper capital</div><div class="rp-v">$10,000</div></div>
+          </div>
+
+          <div style="margin:10px 0 4px;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em">7-Gate Gauntlet Results</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0"><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Score thresholds</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Family active</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Execution viable</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Multiple-testing</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Proxy backtest</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ OOS holdout</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Adversarial red team</span></div>
+
+          <div class="review-why">
+            <div style="font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Edge thesis</div>
+            <div style="font-size:12.5px;color:var(--muted);line-height:1.6">Quarterly futures in crypto consistently trade at a premium to spot in bull markets because leveraged speculators pay a premium for deferred price exposure. This premium must converge to zero at expiry by contract mechanics — making the return near-deterministic once entered. Dif…</div>
+          </div>
+
+          <div class="review-approve">
+            <div style="font-size:11px;color:var(--dim);margin-bottom:6px">To start paper trading — run this command on your Mac:</div>
+            <code class="cmd">python3 ~/.jarvisscout/generator.py --approve 20260602_cyld_002</code>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <span class="review-alert">&#9888; NEEDS YOUR APPROVAL</span>
+              <div class="review-name">Jarvis AltPairs — Crypto Cointegrated Pairs Mean-Reversion</div>
+              <div class="review-sub">Mean Reversion &middot; OKX (crypto) &middot; generated 2026-06-02 19:47 SGT</div>
+            </div>
+            <div class="review-preflight">&#10003; Pre-flight passed<br><span style="font-size:10px;color:var(--dim)">code tested, runs clean</span></div>
+          </div>
+
+          <div class="review-summary">This desk finds pairs of cryptocurrencies that historically move together (like ETH and BNB) and bets that when they temporarily diverge, they will snap back together. It makes money by buying the cheaper coin and shorting the expensive one when the gap gets too wide, then closing when they realign.</div>
+
+          <div class="review-params">
+            <div class="rp"><div class="rp-l">Trades</div><div class="rp-v">[</div></div>
+            <div class="rp"><div class="rp-l">Timeframe</div><div class="rp-v">1h</div></div>
+            <div class="rp"><div class="rp-l">Per position</div><div class="rp-v">0.15        # 15% per pair → up to 5 concurrent pairs = 75% deployed</div></div>
+            <div class="rp"><div class="rp-l">Paper capital</div><div class="rp-v">$10,000</div></div>
+          </div>
+
+          <div style="margin:10px 0 4px;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em">7-Gate Gauntlet Results</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0"><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Score thresholds</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Family active</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Execution viable</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Multiple-testing</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Proxy backtest</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ OOS holdout</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Adversarial red team</span></div>
+
+          <div class="review-why">
+            <div style="font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Edge thesis</div>
+            <div style="font-size:12.5px;color:var(--muted);line-height:1.6">Cointegrated crypto pairs share common market microstructure, liquidity providers, and on-chain utility linkages that create a long-run equilibrium price relationship. Temporary divergences beyond 2σ are caused by idiosyncratic order flow imbalances, not fundamental changes, and …</div>
+          </div>
+
+          <div class="review-approve">
+            <div style="font-size:11px;color:var(--dim);margin-bottom:6px">To start paper trading — run this command on your Mac:</div>
+            <code class="cmd">python3 ~/.jarvisscout/generator.py --approve 20260602_mrev_001</code>
+          </div>
+        </div></div>
 
   <!-- PIPELINE -->
   <div class="section-h">&#9881; How It Works &middot; 7-stage autonomous pipeline</div>
@@ -204,11 +320,56 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
 
   <!-- ACTIVE DESKS -->
   <div class="section-h">&#128202; Active Paper Desks &middot; live simulations with real market data</div>
-  <div style="margin-bottom:48px"><div class="empty-state">No active paper desks yet — run a scan, pass the gauntlet, generate a desk.</div></div>
+  <div style="margin-bottom:48px"><div class="empty-state">No incubating desks yet — approve a reviewed bot to start paper trading.</div></div>
 
   <!-- IDEAS QUEUE -->
   <div class="section-h">&#9889; Ideas Pipeline &middot; discovered and scored by Scout</div>
-  <div style="margin-bottom:48px"><div class="empty-state">No ideas in pipeline — next scan runs at 02:00 SGT.</div></div>
+  <div style="margin-bottom:48px">
+        <div class="idea-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div>
+              <span class="idea-title">Jarvis HKFlow — HK Stocks Momentum with Stock Connect Signal</span><span style="margin-left:8px;font-size:10px;color:#10b981;font-family:'IBM Plex Mono',monospace">&#10003; GAUNTLET</span>
+              <span class="idea-family">Alternative Data</span>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div class="idea-score">8.3</div>
+              <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
+            </div>
+          </div>
+          <div class="idea-summary">This desk buys Hong Kong stocks that mainland Chinese investors are actively moving money into — using the daily Stock Connect flow data published by HKEX — combined with price momentum. It makes money because mainland institutional flows are a strong forward-looking signal of continued buying pressure in HK stocks.</div>
+          <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo OpenD API — HK large-cap stocks (Hang Seng components), long-only</div>
+          <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">10</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:100%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
+        </div>
+        <div class="idea-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div>
+              <span class="idea-title">Jarvis AltPairs — Crypto Cointegrated Pairs Mean-Reversion</span><span style="margin-left:8px;font-size:10px;color:#10b981;font-family:'IBM Plex Mono',monospace">&#10003; GAUNTLET</span>
+              <span class="idea-family">Mean Reversion</span>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div class="idea-score">8.1</div>
+              <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
+            </div>
+          </div>
+          <div class="idea-summary">This desk finds pairs of cryptocurrencies that historically move together (like ETH and BNB) and bets that when they temporarily diverge, they will snap back together. It makes money by buying the cheaper coin and shorting the expensive one when the gap gets too wide, then closing when they realign.</div>
+          <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: OKX REST API — altcoin perpetual futures (long/short pairs)</div>
+          <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
+        </div>
+        <div class="idea-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div>
+              <span class="idea-title">Jarvis Basis — Crypto Quarterly Futures Basis Carry</span><span style="margin-left:8px;font-size:10px;color:#10b981;font-family:'IBM Plex Mono',monospace">&#10003; GAUNTLET</span>
+              <span class="idea-family">Carry / Yield</span>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div class="idea-score">7.8</div>
+              <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
+            </div>
+          </div>
+          <div class="idea-summary">This desk earns predictable, locked-in income by simultaneously buying Bitcoin or Ethereum at spot price and selling it at a higher fixed price in the quarterly futures market. The price difference (basis) is the profit — like a short-term loan to the market that always gets repaid at expiry.</div>
+          <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: OKX REST API — quarterly futures (short) + spot or perp (long), delta-neutral pair</div>
+          <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div></div>
+        </div></div>
 
   <!-- FAMILY INTELLIGENCE -->
   <div class="section-h">&#127981; Family Intelligence &middot; discovery weight + live survival rate</div>
@@ -327,7 +488,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
     <span class="sep">&middot;</span>
     <a href="https://github.com/adamdegoat/jarvisscout">GitHub</a>
     <span class="sep">&middot;</span>
-    Last updated 2026-06-02 19:28 SGT
+    Last updated 2026-06-02 20:05 SGT
   </div>
 
 </div>
