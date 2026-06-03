@@ -90,6 +90,17 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
 .sd-label{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);font-weight:600}
 .sd-val{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;color:#fff;margin-top:2px}
 
+/* Archive */
+.idea-action-row{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:10px;border-top:1px solid rgba(148,163,184,.1)}
+.idea-action-label{font-size:10px;color:var(--dim);font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.idea-cmd{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#94a3b8;background:rgba(0,0,0,.35);border:1px solid rgba(148,163,184,.15);border-radius:5px;padding:3px 8px;user-select:all;word-break:break-all}
+.archived-section{margin-top:20px}
+.archived-summary{cursor:pointer;font-size:12px;color:var(--dim);font-family:'IBM Plex Mono',monospace;padding:10px 14px;background:rgba(55,65,81,.25);border:1px solid rgba(148,163,184,.12);border-radius:8px;list-style:none;outline:none}
+.archived-summary::-webkit-details-marker{display:none}
+.archived-summary::before{content:'▶ ';font-size:9px}
+details[open] .archived-summary::before{content:'▼ '}
+.archived-body{margin-top:10px}
+
 /* Graveyard */
 .grave-card{background:rgba(13,24,41,.5);border:1px solid rgba(148,163,184,.07);border-radius:10px;padding:16px;margin-bottom:10px}
 .grave-name{font-weight:600;font-size:13px;color:#e2e8f0}
@@ -325,7 +336,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
   <!-- IDEAS QUEUE -->
   <div class="section-h">&#9889; Ideas Pipeline &middot; discovered and scored by Scout</div>
   <div style="margin-bottom:48px">
-        <div class="idea-card">
+        <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
             <div>
               <span class="idea-title">Jarvis HKFlow — HK Stocks Momentum with Stock Connect Signal</span><span style="margin-left:8px;font-size:10px;color:#10b981;font-family:'IBM Plex Mono',monospace">&#10003; GAUNTLET</span>
@@ -339,8 +350,13 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
           <div class="idea-summary">This desk buys Hong Kong stocks that mainland Chinese investors are actively moving money into — using the daily Stock Connect flow data published by HKEX — combined with price momentum. It makes money because mainland institutional flows are a strong forward-looking signal of continued buying pressure in HK stocks.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo OpenD API — HK large-cap stocks (Hang Seng components), long-only</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">10</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:100%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
+          
+          <div class="idea-action-row">
+            <span class="idea-action-label">Archive:</span>
+            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260602_altd_003</code>
+          </div>
         </div>
-        <div class="idea-card">
+        <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
             <div>
               <span class="idea-title">Jarvis AltPairs — Crypto Cointegrated Pairs Mean-Reversion</span><span style="margin-left:8px;font-size:10px;color:#10b981;font-family:'IBM Plex Mono',monospace">&#10003; GAUNTLET</span>
@@ -354,8 +370,13 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
           <div class="idea-summary">This desk finds pairs of cryptocurrencies that historically move together (like ETH and BNB) and bets that when they temporarily diverge, they will snap back together. It makes money by buying the cheaper coin and shorting the expensive one when the gap gets too wide, then closing when they realign.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: OKX REST API — altcoin perpetual futures (long/short pairs)</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
+          
+          <div class="idea-action-row">
+            <span class="idea-action-label">Archive:</span>
+            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260602_mrev_001</code>
+          </div>
         </div>
-        <div class="idea-card">
+        <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
             <div>
               <span class="idea-title">Jarvis EarningsTone — LLM Earnings Call Drift</span>
@@ -369,8 +390,13 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
           <div class="idea-summary">This desk reads the words and tone of earnings call transcripts using an LLM (Claude) to detect subtle signals that go beyond the headline EPS number — like whether management sounds confident about guidance or hedging about the future. It then enters trades 2 days after the announcement in stocks where the language signals a mismatch with current price, holding for 2-4 weeks as institutional analysts slowly update their models.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
+          
+          <div class="idea-action-row">
+            <span class="idea-action-label">Archive:</span>
+            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260603_altd_001</code>
+          </div>
         </div>
-        <div class="idea-card">
+        <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
             <div>
               <span class="idea-title">Jarvis DualListed — HK/ADR Cross-Listing Premium Arb</span>
@@ -384,8 +410,13 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
           <div class="idea-summary">This desk exploits the price gap between Chinese company shares that trade in two places at once — on the Hong Kong Stock Exchange and on a US stock exchange as an ADR. When the same company costs 1.5% more in the US than in Hong Kong (or vice versa), it buys the cheaper version and waits for the gap to close, which it does within days because the shares are fundamentally interchangeable.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">10</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:100%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
+          
+          <div class="idea-action-row">
+            <span class="idea-action-label">Archive:</span>
+            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260603_crsa_002</code>
+          </div>
         </div>
-        <div class="idea-card">
+        <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
             <div>
               <span class="idea-title">Jarvis SingaREIT — SGX S-REIT Short-Term Mean Reversion</span>
@@ -399,8 +430,13 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
           <div class="idea-summary">This desk trades Singapore-listed property trusts (S-REITs) which have a natural price anchor — their regular distributions and underlying property NAV. When a REIT temporarily drops more than 2 standard deviations below its 30-day average due to macro noise (not a fundamental change), this desk buys the dip and holds for 1–3 weeks as the price recovers to fair value. Singapore REITs are a large, stable asset class almost untouched by Western quant strategies.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">10</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:100%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
+          
+          <div class="idea-action-row">
+            <span class="idea-action-label">Archive:</span>
+            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260603_mrev_003</code>
+          </div>
         </div>
-        <div class="idea-card">
+        <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
             <div>
               <span class="idea-title">Jarvis Basis — Crypto Quarterly Futures Basis Carry</span><span style="margin-left:8px;font-size:10px;color:#10b981;font-family:'IBM Plex Mono',monospace">&#10003; GAUNTLET</span>
@@ -414,6 +450,11 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
           <div class="idea-summary">This desk earns predictable, locked-in income by simultaneously buying Bitcoin or Ethereum at spot price and selling it at a higher fixed price in the quarterly futures market. The price difference (basis) is the profit — like a short-term loan to the market that always gets repaid at expiry.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: OKX REST API — quarterly futures (short) + spot or perp (long), delta-neutral pair</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div></div>
+          
+          <div class="idea-action-row">
+            <span class="idea-action-label">Archive:</span>
+            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260602_cyld_002</code>
+          </div>
         </div></div>
 
   <!-- FAMILY INTELLIGENCE -->
@@ -533,7 +574,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
     <span class="sep">&middot;</span>
     <a href="https://github.com/adamdegoat/jarvisscout">GitHub</a>
     <span class="sep">&middot;</span>
-    Last updated 2026-06-03 09:00 SGT
+    Last updated 2026-06-03 16:22 SGT
   </div>
 
 </div>
