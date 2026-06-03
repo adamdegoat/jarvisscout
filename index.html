@@ -16,6 +16,8 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
 .header-inner{max-width:1200px;margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
 .wordmark{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#fff;letter-spacing:-.3px}
 .wordmark-dot{color:#06b6d4}
+.nav-archive{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);text-decoration:none;padding:5px 12px;border:1px solid rgba(148,163,184,.2);border-radius:6px;transition:color .15s,border-color .15s}
+.nav-archive:hover{color:#e2e8f0;border-color:rgba(148,163,184,.45)}
 .header-right{font-size:12px;color:var(--dim);font-family:'IBM Plex Mono',monospace}
 .level-badge{background:rgba(6,182,212,.10);border:1px solid rgba(6,182,212,.25);color:#06b6d4;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.08em}
 
@@ -90,16 +92,13 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
 .sd-label{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);font-weight:600}
 .sd-val{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;color:#fff;margin-top:2px}
 
-/* Archive */
-.idea-action-row{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:10px;border-top:1px solid rgba(148,163,184,.1)}
-.idea-action-label{font-size:10px;color:var(--dim);font-family:'IBM Plex Mono',monospace;white-space:nowrap}
-.idea-cmd{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#94a3b8;background:rgba(0,0,0,.35);border:1px solid rgba(148,163,184,.15);border-radius:5px;padding:3px 8px;user-select:all;word-break:break-all}
-.archived-section{margin-top:20px}
-.archived-summary{cursor:pointer;font-size:12px;color:var(--dim);font-family:'IBM Plex Mono',monospace;padding:10px 14px;background:rgba(55,65,81,.25);border:1px solid rgba(148,163,184,.12);border-radius:8px;list-style:none;outline:none}
-.archived-summary::-webkit-details-marker{display:none}
-.archived-summary::before{content:'▶ ';font-size:9px}
-details[open] .archived-summary::before{content:'▼ '}
-.archived-body{margin-top:10px}
+/* Archive button + toast */
+.btn-archive{display:inline-flex;align-items:center;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);background:transparent;border:1px solid rgba(148,163,184,.18);border-radius:5px;padding:3px 9px;cursor:pointer;transition:color .15s,border-color .15s}
+.btn-archive:hover{color:#e2e8f0;border-color:rgba(148,163,184,.45)}
+.btn-restore{display:inline-flex;align-items:center;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#10b981;background:transparent;border:1px solid rgba(16,185,129,.25);border-radius:5px;padding:3px 9px;cursor:pointer;transition:color .15s,border-color .15s}
+.btn-restore:hover{border-color:rgba(16,185,129,.55)}
+.toast{position:fixed;bottom:28px;right:28px;background:#1e293b;border:1px solid rgba(148,163,184,.2);border-radius:8px;padding:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e2e8f0;z-index:999;opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
 
 /* Graveyard */
 .grave-card{background:rgba(13,24,41,.5);border:1px solid rgba(148,163,184,.07);border-radius:10px;padding:16px;margin-bottom:10px}
@@ -156,6 +155,7 @@ details[open] .archived-summary::before{content:'▼ '}
   <div class="header-inner">
     <div class="wordmark">Jarvis Scout<span class="wordmark-dot">.</span></div>
     <div class="header-right" style="display:flex;align-items:center;gap:16px">
+      <a href="archive.html" class="nav-archive">&#128451; Archive</a>
       <span class="level-badge">L9</span>
       <span style="color:var(--dim)">&middot; Autonomous Strategy Factory</span>
     </div>
@@ -184,15 +184,15 @@ details[open] .archived-summary::before{content:'▼ '}
   <!-- STATS -->
   <div class="stat-row">
     <div class="cstat"><div class="cs-l">Ideas Found</div><div class="cs-v">9</div></div>
-    <div class="cstat"><div class="cs-l">Gauntlet Pass</div><div class="cs-v" style="color:#06b6d4">100%</div></div>
-    <div class="cstat"><div class="cs-l">Awaiting Review</div><div class="cs-v" style="color:#f59e0b">3</div></div>
+    <div class="cstat"><div class="cs-l">Gauntlet Pass</div><div class="cs-v" style="color:#06b6d4">67%</div></div>
+    <div class="cstat"><div class="cs-l">Awaiting Review</div><div class="cs-v" style="color:#f59e0b">4</div></div>
     <div class="cstat"><div class="cs-l">Incubating</div><div class="cs-v" style="color:#3b82f6">0</div></div>
     <div class="cstat"><div class="cs-l">Promote Ready</div><div class="cs-v" style="color:#10b981">0</div></div>
     <div class="cstat"><div class="cs-l">Retired</div><div class="cs-v" style="color:#6b7280">0</div></div>
   </div>
 
   <!-- ACTION REQUIRED -->
-  <div class="section-h" style="color:#f59e0b;border-color:rgba(245,158,11,.2)">&#9888; Action Required &middot; 3 desk(s) awaiting your approval</div><div class="action-section">
+  <div class="section-h" style="color:#f59e0b;border-color:rgba(245,158,11,.2)">&#9888; Action Required &middot; 4 desk(s) awaiting your approval</div><div class="action-section">
         <div class="review-card">
           <div class="review-header">
             <div>
@@ -288,6 +288,38 @@ details[open] .archived-summary::before{content:'▼ '}
             <div style="font-size:11px;color:var(--dim);margin-bottom:6px">To start paper trading — run this command on your Mac:</div>
             <code class="cmd">python3 ~/.jarvisscout/generator.py --approve 20260602_mrev_001</code>
           </div>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <span class="review-alert">&#9888; NEEDS YOUR APPROVAL</span>
+              <div class="review-name">Jarvis Earnings Catalyst HK</div>
+              <div class="review-sub">Alternative Data &middot; Futu/Moomoo (stocks) &middot; generated 2026-06-03 16:29 SGT</div>
+            </div>
+            <div class="review-preflight">&#10003; Pre-flight passed<br><span style="font-size:10px;color:var(--dim)">code tested, runs clean</span></div>
+          </div>
+
+          <div class="review-summary">This desk buys HK-listed Chinese tech stocks right after they report earnings beats, holding for 1-15 days. It makes money because Western quant funds are slow to react to Chinese-language earnings reports, creating a temporary mispricing window that closes as the market catches up.</div>
+
+          <div class="review-params">
+            <div class="rp"><div class="rp-l">Trades</div><div class="rp-v">["0700.HK", "9988.HK", "3690.HK", "9618.HK", "1024.HK", "1211.HK", "0981.HK"]</div></div>
+            <div class="rp"><div class="rp-l">Timeframe</div><div class="rp-v">1d</div></div>
+            <div class="rp"><div class="rp-l">Per position</div><div class="rp-v">0.20</div></div>
+            <div class="rp"><div class="rp-l">Paper capital</div><div class="rp-v">$10,000</div></div>
+          </div>
+
+          <div style="margin:10px 0 4px;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em">7-Gate Gauntlet Results</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0"><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Score thresholds</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Family active</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Execution viable</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Multiple-testing</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Proxy backtest</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ OOS holdout</span><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#10b98122;color:#10b981;border:1px solid #10b98144;font-family:'IBM Plex Mono',monospace">✓ Adversarial red team</span></div>
+
+          <div class="review-why">
+            <div style="font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Edge thesis</div>
+            <div style="font-size:12.5px;color:var(--muted);line-height:1.6">Post-earnings announcement drift (PEAD) is documented in Chinese equity markets at 6.78% quarterly alpha (Lan et al. 2024, ScienceDirect). The HK-listed China tech universe is systematically under-covered by Western quantitative funds due to Chinese-language earnings reports, cre…</div>
+          </div>
+
+          <div class="review-approve">
+            <div style="font-size:11px;color:var(--dim);margin-bottom:6px">To start paper trading — run this command on your Mac:</div>
+            <code class="cmd">python3 ~/.jarvisscout/generator.py --approve 20260603_altdata_001</code>
+          </div>
         </div></div>
 
   <!-- PIPELINE -->
@@ -343,6 +375,7 @@ details[open] .archived-summary::before{content:'▼ '}
               <span class="idea-family">Alternative Data</span>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn-archive" onclick="copyCmd('python3 ~/.jarvisscout/generator.py --archive 20260602_altd_003')">&#128451; Archive</button>
               <div class="idea-score">8.3</div>
               <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
             </div>
@@ -350,11 +383,6 @@ details[open] .archived-summary::before{content:'▼ '}
           <div class="idea-summary">This desk buys Hong Kong stocks that mainland Chinese investors are actively moving money into — using the daily Stock Connect flow data published by HKEX — combined with price momentum. It makes money because mainland institutional flows are a strong forward-looking signal of continued buying pressure in HK stocks.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo OpenD API — HK large-cap stocks (Hang Seng components), long-only</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">10</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:100%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
-          
-          <div class="idea-action-row">
-            <span class="idea-action-label">Archive:</span>
-            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260602_altd_003</code>
-          </div>
         </div>
         <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
@@ -363,6 +391,7 @@ details[open] .archived-summary::before{content:'▼ '}
               <span class="idea-family">Mean Reversion</span>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn-archive" onclick="copyCmd('python3 ~/.jarvisscout/generator.py --archive 20260602_mrev_001')">&#128451; Archive</button>
               <div class="idea-score">8.1</div>
               <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
             </div>
@@ -370,11 +399,6 @@ details[open] .archived-summary::before{content:'▼ '}
           <div class="idea-summary">This desk finds pairs of cryptocurrencies that historically move together (like ETH and BNB) and bets that when they temporarily diverge, they will snap back together. It makes money by buying the cheaper coin and shorting the expensive one when the gap gets too wide, then closing when they realign.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: OKX REST API — altcoin perpetual futures (long/short pairs)</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
-          
-          <div class="idea-action-row">
-            <span class="idea-action-label">Archive:</span>
-            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260602_mrev_001</code>
-          </div>
         </div>
         <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
@@ -383,6 +407,7 @@ details[open] .archived-summary::before{content:'▼ '}
               <span class="idea-family">Alternative Data</span>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn-archive" onclick="copyCmd('python3 ~/.jarvisscout/generator.py --archive 20260603_altd_001')">&#128451; Archive</button>
               <div class="idea-score">7.9</div>
               <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
             </div>
@@ -390,31 +415,6 @@ details[open] .archived-summary::before{content:'▼ '}
           <div class="idea-summary">This desk reads the words and tone of earnings call transcripts using an LLM (Claude) to detect subtle signals that go beyond the headline EPS number — like whether management sounds confident about guidance or hedging about the future. It then enters trades 2 days after the announcement in stocks where the language signals a mismatch with current price, holding for 2-4 weeks as institutional analysts slowly update their models.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
-          
-          <div class="idea-action-row">
-            <span class="idea-action-label">Archive:</span>
-            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260603_altd_001</code>
-          </div>
-        </div>
-        <div class="idea-card" style="">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
-            <div>
-              <span class="idea-title">Jarvis Cross-Listed Basis Trader</span>
-              <span class="idea-family">Mean Reversion</span>
-            </div>
-            <div style="display:flex;gap:8px;align-items:center">
-              <div class="idea-score">7.9</div>
-              <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
-            </div>
-          </div>
-          <div class="idea-summary">This desk exploits the price gap between Chinese company shares listed in Hong Kong and the same company shares listed in the US as ADRs. When the gap gets too wide due to time zone differences or sentiment swings, it trades the Hong Kong side expecting the gap to close within a few days.</div>
-          <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo OpenD API — HK-listed stocks (US ADR prices from yfinance for signal generation only)</div>
-          <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
-          
-          <div class="idea-action-row">
-            <span class="idea-action-label">Archive:</span>
-            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260603_meanrev_003</code>
-          </div>
         </div>
         <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
@@ -423,6 +423,7 @@ details[open] .archived-summary::before{content:'▼ '}
               <span class="idea-family">Cross-Asset Arb</span>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn-archive" onclick="copyCmd('python3 ~/.jarvisscout/generator.py --archive 20260603_crsa_002')">&#128451; Archive</button>
               <div class="idea-score">7.8</div>
               <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
             </div>
@@ -430,11 +431,6 @@ details[open] .archived-summary::before{content:'▼ '}
           <div class="idea-summary">This desk exploits the price gap between Chinese company shares that trade in two places at once — on the Hong Kong Stock Exchange and on a US stock exchange as an ADR. When the same company costs 1.5% more in the US than in Hong Kong (or vice versa), it buys the cheaper version and waits for the gap to close, which it does within days because the shares are fundamentally interchangeable.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">10</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:100%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
-          
-          <div class="idea-action-row">
-            <span class="idea-action-label">Archive:</span>
-            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260603_crsa_002</code>
-          </div>
         </div>
         <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
@@ -443,6 +439,7 @@ details[open] .archived-summary::before{content:'▼ '}
               <span class="idea-family">Mean Reversion</span>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn-archive" onclick="copyCmd('python3 ~/.jarvisscout/generator.py --archive 20260603_mrev_003')">&#128451; Archive</button>
               <div class="idea-score">7.8</div>
               <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
             </div>
@@ -450,11 +447,6 @@ details[open] .archived-summary::before{content:'▼ '}
           <div class="idea-summary">This desk trades Singapore-listed property trusts (S-REITs) which have a natural price anchor — their regular distributions and underlying property NAV. When a REIT temporarily drops more than 2 standard deviations below its 30-day average due to macro noise (not a fundamental change), this desk buys the dip and holds for 1–3 weeks as the price recovers to fair value. Singapore REITs are a large, stable asset class almost untouched by Western quant strategies.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">10</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:100%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
-          
-          <div class="idea-action-row">
-            <span class="idea-action-label">Archive:</span>
-            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260603_mrev_003</code>
-          </div>
         </div>
         <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
@@ -463,6 +455,7 @@ details[open] .archived-summary::before{content:'▼ '}
               <span class="idea-family">Carry / Yield</span>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn-archive" onclick="copyCmd('python3 ~/.jarvisscout/generator.py --archive 20260602_cyld_002')">&#128451; Archive</button>
               <div class="idea-score">7.8</div>
               <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
             </div>
@@ -470,19 +463,15 @@ details[open] .archived-summary::before{content:'▼ '}
           <div class="idea-summary">This desk earns predictable, locked-in income by simultaneously buying Bitcoin or Ethereum at spot price and selling it at a higher fixed price in the quarterly futures market. The price difference (basis) is the profit — like a short-term loan to the market that always gets repaid at expiry.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: OKX REST API — quarterly futures (short) + spot or perp (long), delta-neutral pair</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div></div>
-          
-          <div class="idea-action-row">
-            <span class="idea-action-label">Archive:</span>
-            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260602_cyld_002</code>
-          </div>
         </div>
         <div class="idea-card" style="">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
             <div>
-              <span class="idea-title">Jarvis Earnings Catalyst HK</span>
+              <span class="idea-title">Jarvis Earnings Catalyst HK</span><span style="margin-left:8px;font-size:10px;color:#10b981;font-family:'IBM Plex Mono',monospace">&#10003; GAUNTLET</span>
               <span class="idea-family">Alternative Data</span>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn-archive" onclick="copyCmd('python3 ~/.jarvisscout/generator.py --archive 20260603_altdata_001')">&#128451; Archive</button>
               <div class="idea-score">7.6</div>
               <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
             </div>
@@ -490,31 +479,6 @@ details[open] .archived-summary::before{content:'▼ '}
           <div class="idea-summary">This desk buys HK-listed Chinese tech stocks right after they report earnings beats, holding for 1-15 days. It makes money because Western quant funds are slow to react to Chinese-language earnings reports, creating a temporary mispricing window that closes as the market catches up.</div>
           <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: Futu/Moomoo OpenD API — HK-listed stocks</div>
           <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">9</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:90%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div></div>
-          
-          <div class="idea-action-row">
-            <span class="idea-action-label">Archive:</span>
-            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260603_altdata_001</code>
-          </div>
-        </div>
-        <div class="idea-card" style="">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
-            <div>
-              <span class="idea-title">Jarvis Altseason Engine</span>
-              <span class="idea-family">Cross-Asset Arb</span>
-            </div>
-            <div style="display:flex;gap:8px;align-items:center">
-              <div class="idea-score">7.1</div>
-              <div class="outcome-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Pending</div>
-            </div>
-          </div>
-          <div class="idea-summary">This desk detects when Bitcoin market share is declining and money is flowing into altcoins, then systematically buys the altcoins showing the strongest momentum during that rotation phase. It makes money by riding the predictable wave of capital flowing from Bitcoin into smaller cryptocurrencies.</div>
-          <div style="margin:10px 0 6px;font-size:11px;color:rgba(148,163,184,.6)">Route: OKX REST API — altcoin perpetual futures</div>
-          <div class="score-dims"><div class="score-dim"><div class="sd-label">Edge</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Build</div><div class="sd-val">8</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:80%"></div></div></div><div class="score-dim"><div class="sd-label">L5 Loop</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Novelty</div><div class="sd-val">7</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:70%"></div></div></div><div class="score-dim"><div class="sd-label">Risk</div><div class="sd-val">6</div><div style="background:rgba(148,163,184,.1);border-radius:3px;height:4px;width:100%;margin-top:6px"><div style="background:#06b6d4;height:4px;border-radius:3px;width:60%"></div></div></div></div>
-          
-          <div class="idea-action-row">
-            <span class="idea-action-label">Archive:</span>
-            <code class="idea-cmd">python3 ~/.jarvisscout/generator.py --archive 20260603_crossarb_002</code>
-          </div>
         </div></div>
 
   <!-- FAMILY INTELLIGENCE -->
@@ -634,9 +598,21 @@ details[open] .archived-summary::before{content:'▼ '}
     <span class="sep">&middot;</span>
     <a href="https://github.com/adamdegoat/jarvisscout">GitHub</a>
     <span class="sep">&middot;</span>
-    Last updated 2026-06-03 16:24 SGT
+    Last updated 2026-06-03 16:29 SGT
   </div>
 
 </div>
+
+<div class="toast" id="toast"></div>
+<script>
+function copyCmd(cmd) {
+  navigator.clipboard.writeText(cmd).then(function() {
+    var t = document.getElementById('toast');
+    t.textContent = '✓ Copied — paste in Terminal';
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2200);
+  });
+}
+</script>
 </body>
 </html>
