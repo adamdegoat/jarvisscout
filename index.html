@@ -101,13 +101,14 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
 .toast.show{opacity:1;transform:translateY(0)}
 
 /* Fleet Summary */
-.fleet-summary{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:20px 24px;margin-bottom:28px}
-.fleet-title{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#06b6d4;margin-bottom:16px}
+.fleet-summary{background:linear-gradient(135deg,rgba(30,18,4,.95),rgba(22,14,3,.98));border:1px solid rgba(245,158,11,.3);border-top:3px solid #f59e0b;border-radius:14px;padding:22px 26px;margin-bottom:32px;box-shadow:0 4px 32px rgba(245,158,11,.08)}
+.fleet-title{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f59e0b;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.fleet-title::after{content:'';flex:1;height:1px;background:rgba(245,158,11,.15)}
 .fleet-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.fleet-stat{background:rgba(6,13,26,.5);border:1px solid rgba(148,163,184,.08);border-radius:10px;padding:12px 14px}
-.fs-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:600;margin-bottom:4px}
-.fs-val{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;color:#fff}
-.fs-sub{font-size:10px;color:var(--dim);margin-top:3px}
+.fleet-stat{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.12);border-radius:10px;padding:14px 16px}
+.fs-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,158,11,.6);font-weight:600;margin-bottom:6px}
+.fs-val{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:700;color:#fff}
+.fs-sub{font-size:10px;color:rgba(245,158,11,.45);margin-top:4px}
 
 /* Graveyard */
 .grave-card{background:rgba(13,24,41,.5);border:1px solid rgba(148,163,184,.07);border-radius:10px;padding:16px;margin-bottom:10px}
@@ -250,12 +251,12 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
       <div class="fleet-grid">
         <div class="fleet-stat">
           <div class="fs-label">Combined NAV</div>
-          <div class="fs-val">$39,997</div>
+          <div class="fs-val">$39,948</div>
           <div class="fs-sub">started at $40,000</div>
         </div>
         <div class="fleet-stat">
           <div class="fs-label">Total Return</div>
-          <div class="fs-val" style="color:#ef4444">-0.01%</div>
+          <div class="fs-val" style="color:#ef4444">-0.13%</div>
           <div class="fs-sub">0 trades logged</div>
         </div>
         <div class="fleet-stat">
@@ -265,7 +266,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
         </div>
         <div class="fleet-stat">
           <div class="fs-label">Worst Drawdown</div>
-          <div class="fs-val" style="color:#f59e0b">0.0%</div>
+          <div class="fs-val" style="color:#f59e0b">0.5%</div>
           <div class="fs-sub">worst single desk</div>
         </div>
         <div class="fleet-stat">
@@ -276,7 +277,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
         <div class="fleet-stat">
           <div class="fs-label">Weakest Desk</div>
           <div class="fs-val" style="color:#ef4444;font-size:13px">Jarvis HKFlow — HK Sto</div>
-          <div class="fs-sub">-0.0% return</div>
+          <div class="fs-sub">-0.5% return</div>
         </div>
       </div>
     </div>
@@ -290,11 +291,11 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
             <div class="desk-badge" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d444">Incubating</div>
           </div>
           <div class="desk-metrics">
-            <div class="dm"><div class="dm-l">NAV</div><div class="dm-v">$9,999</div></div>
-            <div class="dm"><div class="dm-l">Return</div><div class="dm-v" style="color:#ef4444">-0.0%</div></div>
+            <div class="dm"><div class="dm-l">NAV</div><div class="dm-v">$9,951</div></div>
+            <div class="dm"><div class="dm-l">Return</div><div class="dm-v" style="color:#ef4444">-0.5%</div></div>
             <div class="dm"><div class="dm-l">Win Rate</div><div class="dm-v">0%</div></div>
             <div class="dm"><div class="dm-l">Sharpe</div><div class="dm-v">0.00</div></div>
-            <div class="dm"><div class="dm-l">Max DD</div><div class="dm-v">0.0%</div></div>
+            <div class="dm"><div class="dm-l">Max DD</div><div class="dm-v">0.5%</div></div>
             <div class="dm"><div class="dm-l">Trades</div><div class="dm-v">0</div></div>
           </div>
         </div>
@@ -324,7 +325,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
             <div class="desk-badge" style="background:#06b6d422;color:#06b6d4;border:1px solid #06b6d444">Incubating</div>
           </div>
           <div class="desk-metrics">
-            <div class="dm"><div class="dm-l">NAV</div><div class="dm-v">$9,998</div></div>
+            <div class="dm"><div class="dm-l">NAV</div><div class="dm-v">$9,996</div></div>
             <div class="dm"><div class="dm-l">Return</div><div class="dm-v" style="color:#ef4444">-0.0%</div></div>
             <div class="dm"><div class="dm-l">Win Rate</div><div class="dm-v">0%</div></div>
             <div class="dm"><div class="dm-l">Sharpe</div><div class="dm-v">0.00</div></div>
@@ -583,7 +584,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
     <span class="sep">&middot;</span>
     <a href="https://github.com/adamdegoat/jarvisscout">GitHub</a>
     <span class="sep">&middot;</span>
-    Last updated 2026-06-03 16:45 SGT
+    Last updated 2026-06-03 16:49 SGT
   </div>
 
 </div>
