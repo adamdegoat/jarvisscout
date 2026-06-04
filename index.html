@@ -52,6 +52,17 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
 /* Glass panel */
 .glass{background:linear-gradient(180deg,rgba(22,32,53,.62),rgba(15,23,42,.55));border:1px solid var(--line);border-radius:16px;padding:24px;backdrop-filter:blur(14px);box-shadow:0 12px 36px rgba(0,0,0,.32);margin-bottom:48px}
 
+/* Activity feed */
+.act-feed{background:linear-gradient(180deg,rgba(22,32,53,.55),rgba(13,21,38,.5));border:1px solid var(--line);border-radius:14px;padding:6px 0;margin-bottom:48px}
+.act-row{display:flex;align-items:baseline;gap:10px;padding:8px 20px;border-bottom:1px solid rgba(148,163,184,.06)}
+.act-row:last-child{border-bottom:none}
+.act-icon{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;min-width:16px;text-align:center}
+.act-body{flex:1;font-size:12.5px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.act-label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600}
+.act-detail{color:var(--muted);font-size:12px}
+.act-ts{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--dim);white-space:nowrap;min-width:72px;text-align:right}
+.act-empty{padding:20px;text-align:center;color:var(--dim);font-size:12px;font-family:'IBM Plex Mono',monospace}
+
 /* Action required / review cards */
 .action-section{margin-bottom:48px}
 .review-card{background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(13,24,41,.8));border:1px solid rgba(245,158,11,.35);border-radius:16px;padding:24px;margin-bottom:16px;position:relative}
@@ -200,6 +211,58 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
     <div class="cstat"><div class="cs-l">Promote Ready</div><div class="cs-v" style="color:#10b981">0</div></div>
     <div class="cstat"><div class="cs-l">Retired</div><div class="cs-v" style="color:#6b7280">0</div></div>
   </div>
+
+  <!-- ACTIVITY FEED -->
+  <div class="section-h">&#128336; Recent Activity &middot; last 15 events</div>
+  <div class="act-feed"><div class="act-row">
+  <span class="act-icon" style="color:#4b5a72">⟳</span>
+  <span class="act-body"><span class="act-label" style="color:#4b5a72">Research cycle ran</span></span>
+  <span class="act-ts">04 Jun 02:00</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#6b7280">✗</span>
+  <span class="act-body"><span class="act-label" style="color:#6b7280">Gauntlet failed at Proxy backtest</span><span class="act-detail">Jarvis Altseason Engine</span></span>
+  <span class="act-ts">03 Jun 16:29</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#6b7280">✗</span>
+  <span class="act-body"><span class="act-label" style="color:#6b7280">Gauntlet failed at Proxy backtest</span><span class="act-detail">Jarvis Cross-Listed Basis Trader</span></span>
+  <span class="act-ts">03 Jun 16:29</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#10b981">✓</span>
+  <span class="act-body"><span class="act-label" style="color:#10b981">Gauntlet passed</span><span class="act-detail">Jarvis Earnings Catalyst HK</span></span>
+  <span class="act-ts">03 Jun 16:26</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#4b5a72">⟳</span>
+  <span class="act-body"><span class="act-label" style="color:#4b5a72">Research cycle ran</span></span>
+  <span class="act-ts">03 Jun 16:18</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#4b5a72">⟳</span>
+  <span class="act-body"><span class="act-label" style="color:#4b5a72">Research cycle ran</span></span>
+  <span class="act-ts">03 Jun 02:00</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#10b981">✓</span>
+  <span class="act-body"><span class="act-label" style="color:#10b981">Gauntlet passed</span><span class="act-detail">Jarvis HKFlow — HK Stocks Momentum wit…</span></span>
+  <span class="act-ts">02 Jun 19:43</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#10b981">✓</span>
+  <span class="act-body"><span class="act-label" style="color:#10b981">Gauntlet passed</span><span class="act-detail">Jarvis Basis — Crypto Quarterly Future…</span></span>
+  <span class="act-ts">02 Jun 19:42</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#10b981">✓</span>
+  <span class="act-body"><span class="act-label" style="color:#10b981">Gauntlet passed</span><span class="act-detail">Jarvis AltPairs — Crypto Cointegrated …</span></span>
+  <span class="act-ts">02 Jun 19:40</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#4b5a72">⟳</span>
+  <span class="act-body"><span class="act-label" style="color:#4b5a72">Research cycle ran</span></span>
+  <span class="act-ts">02 Jun 19:22</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#4b5a72">⟳</span>
+  <span class="act-body"><span class="act-label" style="color:#4b5a72">Research cycle ran</span></span>
+  <span class="act-ts">02 Jun 13:32</span>
+</div><div class="act-row">
+  <span class="act-icon" style="color:#4b5a72">⟳</span>
+  <span class="act-body"><span class="act-label" style="color:#4b5a72">Research cycle ran</span></span>
+  <span class="act-ts">02 Jun 13:29</span>
+</div></div>
 
   <!-- ACTION REQUIRED -->
   
@@ -632,7 +695,7 @@ body{background:var(--bg);color:#e2e8f0;font-family:'Inter',sans-serif;font-size
     <span class="sep">&middot;</span>
     <a href="https://github.com/adamdegoat/jarvisscout">GitHub</a>
     <span class="sep">&middot;</span>
-    Last updated 2026-06-04 09:00 SGT
+    Last updated 2026-06-04 10:29 SGT
   </div>
 
 </div>
